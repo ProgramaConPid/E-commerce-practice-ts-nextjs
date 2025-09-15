@@ -45,7 +45,7 @@ export const products: Product[] = [
     category: "Electronics",
     isActive: true,
     dimensions: { width: 35, height: 24 },
-    imageURL: "https://id-preview--cd435d9a-6844-44e6-8351-279acb86b107.lovable.app/assets/laptop-pro-yK_00TaC.jpg"
+    imageURL: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     name: "Smartphone X",
@@ -55,7 +55,7 @@ export const products: Product[] = [
     currency: "USD",
     category: "Electronics",
     isActive: true,
-    imageURL: "https://id-preview--cd435d9a-6844-44e6-8351-279acb86b107.lovable.app/assets/smartphone-RtKBCjW5.jpg"
+    imageURL: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     name: "Wireless Headphones",
@@ -76,7 +76,7 @@ export const products: Product[] = [
     currency: "COP",
     category: "Furniture",
     isActive: true,
-    imageURL: "https://example.com/office-chair.jpg"
+    imageURL: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     name: "Gaming Mouse",
@@ -96,7 +96,7 @@ export const products: Product[] = [
     currency: "USD",
     category: "Electronics",
     isActive: true,
-    imageURL: "https://example.com/4k-monitor.jpg"
+    imageURL: "https://images.unsplash.com/photo-1547658718-1cdaa0852790?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     name: "Running Shoes",
@@ -124,7 +124,7 @@ export const products: Product[] = [
     currency: "USD",
     category: "Electronics",
     isActive: false,
-    imageURL: "https://example.com/smartwatch.jpg"
+    imageURL: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     name: "Bluetooth Speaker",

@@ -1,9 +1,11 @@
 import { products, users } from "@/interfaces/main";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Home() {
   const [state, changeState] = useState(false);
-  const [text, changeText] = useState("Show Content")
+  const [text, changeText] = useState("Show Content");
+  const defaultImage: string = "https://images.unsplash.com/photo-1656543802898-41c8c46683a7?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 
   const handleState = () => {
     if (state) {
@@ -39,8 +41,28 @@ export default function Home() {
                 return (
                   <div
                     key={product.name}
-                    className="product border-1 p-5 text-center rounded-md border-[#e4e4e7] shadow-xl/30"
+                    className="product flex flex-col border-1 p-5 text-center rounded-md border-[#e4e4e7] shadow-xl/30 relative"
                   >
+                    {product?.imageURL ? (
+                      <Image
+                        src={product.imageURL}
+                        alt={product.name}
+                        width={200}
+                        height={200}
+                        objectFit="cover"
+                        className="block mx-auto w-full h-[300px] rounded-2xl mb-4"
+                      />
+                    ) : (
+                      <Image
+                        src={defaultImage}
+                        alt={product.name}
+                        width={200}
+                        height={200}
+                        objectFit="cover"
+                        className="block mx-auto w-full h-[300px] rounded-2xl mb-4"
+                      />
+                    )}
+                    <span className="product__category absolute left-9 top-8 py-[3px] bg-white px-3 rounded-3xl border-1 border-[#7c3bed] text-[#7c3bed]">{product.category}</span>
                     <div className="prodcut__header flex justify-between">
                       <h3 className="product__header--title text-zinc-500 font-bold">
                         {product.brand}
