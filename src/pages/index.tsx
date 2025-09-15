@@ -1,17 +1,17 @@
-import { products } from "@/interfaces/main";
+import { products, users } from "@/interfaces/main";
 
 export default function Home() {
   return (
     <div className="container flex flex-col gap-4 w-full">
       <div className="container__products">
-        <h1 className="text-[2.5rem] font-bold text-center mb-4 mt-[50px]">
+        <h1 className="text-[2.5rem] font-bold text-center mb-4">
           Our Products
         </h1>
         <p className="products__description text-center w-[50%] m-auto mb-5 text-zinc-500">
           Discover our curated collection of premium technology and accessories,
           designed to enhance your digital lifestyle.
         </p>
-        <div className="products__box--container grid grid-cols-3 gap-4">
+        <div className="products__box--container grid grid-cols-3 gap-5">
           {products.map((product) => {
             return (
               <div
@@ -52,9 +52,40 @@ export default function Home() {
           })}
         </div>
       </div>
-      {/* <div className="container__users">
-        <h2 className="text-xl font-bold">Users</h2>
-      </div> */}
+      <div className="container__users w-full">
+        <h2 className="text-3xl font-extrabold text-center mt-12 mb-10 text-gray-800">
+          Users
+        </h2>
+
+        <div className="users grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:flex flex-wrap items-center justify-center gap-6">
+          {users.map((user) => {
+            return (
+              <div
+                key={user.name}
+                className="user__box lg:w-[300px] w-[250px] bg-white shadow-md rounded-lg p-6 border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition duration-300"
+              >
+                <h3 className="user__box--name text-lg font-semibold text-indigo-600 mb-2">
+                  {user.name.toUpperCase()}
+                </h3>
+                <p className="user__box--email text-sm text-gray-500 mb-1">
+                  {user.email}
+                </p>
+                <p className="user__box--age text-sm text-gray-700 mb-3">
+                  Age: {user.age}
+                </p>
+
+                <div className="space-y-1 text-sm text-gray-600">
+                  <p>City: {user.address.city}</p>
+                  <p>Street: {user.address.street}</p>
+                  <p>Country: {user.address.country}</p>
+                  <p>Zip: {user.address.zipCode || "N/A"}</p>
+                  <p>State: {user.address.state || "N/A"}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
