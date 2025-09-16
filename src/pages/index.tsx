@@ -4,6 +4,7 @@ import Image from "next/image";
 import NavBar from "@/components/navBar";
 import Cars from "@/components/cars";
 import Footer from "@/components/footer";
+import ProductList from "@/components/ProductList";
 
 export default function Home() {
   // const [state, changeState] = useState(false);
@@ -35,7 +36,7 @@ export default function Home() {
 
         <div className="container__content" id="containerContent">
           <div className="container__products">
-            <h1 className="text-[2.5rem] font-bold text-center mb-4">
+            <h1 className="text-3xl font-bold text-center mb-4 text-gray-800">
               Our Products
             </h1>
             <p className="products__description text-center w-[50%] m-auto mb-5 text-zinc-500">
@@ -141,6 +142,7 @@ export default function Home() {
           </div>
         </div>
         <Cars />
+        <ProductList />
       </div>
       <Footer />
     </body>
