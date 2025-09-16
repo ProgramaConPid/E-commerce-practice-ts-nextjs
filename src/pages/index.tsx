@@ -1,32 +1,38 @@
-import { products, users } from "@/interfaces/main";
-import { useState } from "react";
+// import { useState } from "react";
+import { arrayProducts, arrayUsers } from "@/helpers/utils";
 import Image from "next/image";
+import NavBar from "@/components/navBar";
+import Cars from "@/components/cars";
+import Footer from "@/components/footer";
 
 export default function Home() {
-  const [state, changeState] = useState(false);
-  const [text, changeText] = useState("Show Content");
-  const defaultImage: string = "https://images.unsplash.com/photo-1656543802898-41c8c46683a7?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  // const [state, changeState] = useState(false);
+  // const [text, changeText] = useState("Show Content");
+  const defaultImage: string =
+    "https://images.unsplash.com/photo-1656543802898-41c8c46683a7?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
-  const handleState = () => {
-    if (state) {
-      changeState(false);
-      changeText("Show Content");
-    } else {
-      changeState(true);
-      changeText("Hide Content");
-    }
-  };
+  // const handleState = () => {
+  //   if (state) {
+  //     changeState(false);
+  //     changeText("Show Content");
+  //   } else {
+  //     changeState(true);
+  //     changeText("Hide Content");
+  //   }
+  // };
 
   return (
-    <div className="container flex flex-col gap-4 w-full">
-      <button
+    <body>
+      <NavBar />
+      <div className="container flex flex-col gap-4 w-full">
+        {/* <button
         id="showContent"
         onClick={handleState}
         className="bg-[#7c3bed] p-4 rounded-2xl w-max m-auto text-white font-bold cursor-pointer"
       >
         {text}
-      </button>
-      {state && (
+      </button> */}
+
         <div className="container__content" id="containerContent">
           <div className="container__products">
             <h1 className="text-[2.5rem] font-bold text-center mb-4">
@@ -37,7 +43,7 @@ export default function Home() {
               accessories, designed to enhance your digital lifestyle.
             </p>
             <div className="products__box--container grid grid-cols-3 gap-5">
-              {products.map((product) => {
+              {arrayProducts.map((product) => {
                 return (
                   <div
                     key={product.name}
@@ -62,7 +68,9 @@ export default function Home() {
                         className="block mx-auto w-full h-[300px] rounded-2xl mb-4"
                       />
                     )}
-                    <span className="product__category absolute left-9 top-8 py-[3px] bg-white px-3 rounded-3xl border-1 border-[#7c3bed] text-[#7c3bed]">{product.category}</span>
+                    <span className="product__category absolute left-9 top-8 py-[3px] bg-white px-3 rounded-3xl border-1 border-[#7c3bed] text-[#7c3bed]">
+                      {product.category}
+                    </span>
                     <div className="prodcut__header flex justify-between">
                       <h3 className="product__header--title text-zinc-500 font-bold">
                         {product.brand}
@@ -103,7 +111,7 @@ export default function Home() {
             </h2>
 
             <div className="users grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:flex flex-wrap items-center justify-center gap-6">
-              {users.map((user) => {
+              {arrayUsers.map((user) => {
                 return (
                   <div
                     key={user.name}
@@ -132,7 +140,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-      )}
-    </div>
+        <Cars />
+      </div>
+      <Footer />
+    </body>
   );
 }
