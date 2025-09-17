@@ -5,35 +5,16 @@ import NavBar from "@/components/navBar";
 import Cars from "@/components/cars";
 import Footer from "@/components/footer";
 import ProductList from "@/components/ProductList";
+import Login from "@/components/login";
 
 export default function Home() {
-  // const [state, changeState] = useState(false);
-  // const [text, changeText] = useState("Show Content");
   const defaultImage: string =
-    "https://images.unsplash.com/photo-1656543802898-41c8c46683a7?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-
-  // const handleState = () => {
-  //   if (state) {
-  //     changeState(false);
-  //     changeText("Show Content");
-  //   } else {
-  //     changeState(true);
-  //     changeText("Hide Content");
-  //   }
-  // };
+  "https://images.unsplash.com/photo-1656543802898-41c8c46683a7?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
   return (
-    <body>
+    <div>
       <NavBar />
       <div className="container flex flex-col gap-4 w-full">
-        {/* <button
-        id="showContent"
-        onClick={handleState}
-        className="bg-[#7c3bed] p-4 rounded-2xl w-max m-auto text-white font-bold cursor-pointer"
-      >
-        {text}
-      </button> */}
-
         <div className="container__content" id="containerContent">
           <div className="container__products">
             <h1 className="text-3xl font-bold text-center mb-4 text-gray-800">
@@ -143,8 +124,9 @@ export default function Home() {
         </div>
         <Cars />
         <ProductList />
+        <Login />
       </div>
       <Footer />
-    </body>
+    </div>
   );
 }

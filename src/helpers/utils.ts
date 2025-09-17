@@ -1,4 +1,4 @@
-import { Product,User, Car } from "@/interfaces/main";
+import { Product,User, Car, UserRegistered } from "@/interfaces/main";
 
 // Array od Cars
 export const arrayCars: Car[] = [
@@ -235,3 +235,9 @@ export const arrayUsers: User[] = [
     }
   }
 ];
+
+// Array of users registered
+export const usersRegistered: UserRegistered[] = [
+  {username: "Camilo", password: "cami1234"},
+  {username: "Pedro", password: "pepe1234"}
+]

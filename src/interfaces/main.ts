@@ -44,4 +44,10 @@ export interface Car {
   color?: string,
 }
 
+// Interface for user registered
+export interface UserRegistered {
+  username: string,
+  password: string
+}
+
 
