@@ -239,5 +239,72 @@ export const arrayUsers: User[] = [
 // Array of users registered
 export const usersRegistered: UserRegistered[] = [
   {username: "Camilo", password: "cami1234"},
-  {username: "Pedro", password: "pepe1234"}
+  {username: "Pedro", password: "pepe1234"},
+  {username: "Daniela12", password: "danipro"},
+  {username: "piton0520", password: "jackson123"}
 ]
+
+// Class UserStore
+export class UserStore {
+  // -- Methods CRUD --
+
+  // List Users
+  getUsers(listUsers: UserRegistered[]) {
+    const usersNames = listUsers.map((user, index) => {
+      return `\n User #${index + 1} -> ${user.username}` 
+    })
+
+    return `${usersNames.join("")}`
+  } 
+
+  // Find User By name
+  findByName(username: string, listUsers: UserRegistered[]) {
+    const userFounded = listUsers.find((user) => user.username == username)
+
+    if (userFounded) {
+      return `User ${username} found succesfully of the list ✅`
+    } else {
+      return `User ${username} was not found of the list ✖️`
+    }
+  }
+
+  // Create a new user
+  createUser(username: string, password:string, listUsers: UserRegistered[]) {
+    const newUser: UserRegistered = {
+      username: username,
+      password: password
+    };
+
+    if (!username || !password) {
+      return `Error creating user, enter username and password`
+    }
+
+    listUsers.push(newUser)
+    return `User ${username} has been created succesfully ✅`
+  }
+
+  // Remove an User
+  updateUser(listUsers: UserRegistered[]) {
+    const username = window.prompt("Enter the username to update")
+
+    if (!username) {
+      return `Error, you did not entered a valid username`
+    }
+
+    const userFound = listUsers.findIndex((user) => user.username == username);
+
+    if (!userFound) {
+      return `Error, the user entered does not exists on the list of users`
+    }
+
+    const newUserName = window.prompt("Enter the new user name");
+    const newPassword = window.prompt("Enter the new password");
+
+    if (!newUserName || !newPassword) {
+      return `Error updating the User ${username}, Enter a valid username and password`
+    }
+
+    listUsers[userFound].username = newUserName;
+    listUsers[userFound].password = newPassword;
+  }
+}
