@@ -259,9 +259,9 @@ export class UserStore {
 
   // Find User By name
   findByName(username: string, listUsers: UserRegistered[]) {
-    const userFounded = listUsers.find((user) => user.username == username)
+    const userFound = listUsers.find((user) => user.username == username)
 
-    if (userFounded) {
+    if (userFound) {
       return `User ${username} found succesfully of the list ✅`
     } else {
       return `User ${username} was not found of the list ✖️`
@@ -280,7 +280,6 @@ export class UserStore {
     }
 
     listUsers.push(newUser)
-    return `User ${username} has been created succesfully ✅`
   }
 
   // Remove an User
@@ -304,7 +303,36 @@ export class UserStore {
       return `Error updating the User ${username}, Enter a valid username and password`
     }
 
+    const userUpdated = {
+      oldUsername: listUsers[userFound].username,
+      username: newUserName,
+      password: newPassword
+    }
+
     listUsers[userFound].username = newUserName;
     listUsers[userFound].password = newPassword;
+    return userUpdated;
+  }
+
+  // Delete an user
+  removeUser(listUsers: UserRegistered[]) {
+    const username = window.prompt("Enter the username to delete")
+    if (!username) {
+      return "Error, enter a valid username."
+    }
+
+    const userFound = listUsers.findIndex(user => user.username == username);
+    if (userFound === -1) {
+      return `The user entered ${username} does not exist on the list of users.`
+    }
+
+    const confirmDeleteUser = window.confirm(`The user ${username} was found succesfully, are you sure want to delete?`)
+
+    if (confirmDeleteUser) {
+      const removedUser = listUsers.splice(userFound, 1)[0];
+      return `The user ${removedUser.username} was deleted succesfully from the list of users`;
+    } else {
+      return `The user ${username} was not deleted from the list of users.`;
+    }
   }
 }
