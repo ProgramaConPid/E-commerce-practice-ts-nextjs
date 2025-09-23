@@ -1,4 +1,5 @@
-import { Product,User, Car, UserRegistered } from "@/interfaces/main";
+import { Product, User, Car, UserRegistered } from "@/interfaces/main";
+import { toast } from "react-toastify";
 
 // Array od Cars
 export const arrayCars: Car[] = [
@@ -39,7 +40,8 @@ export const arrayProducts: Product[] = [
     category: "Electronics",
     isActive: true,
     dimensions: { width: 35, height: 24 },
-    imageURL: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    imageURL:
+      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Smartphone X",
@@ -49,7 +51,8 @@ export const arrayProducts: Product[] = [
     currency: "USD",
     category: "Electronics",
     isActive: true,
-    imageURL: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    imageURL:
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Wireless Headphones",
@@ -60,7 +63,8 @@ export const arrayProducts: Product[] = [
     category: "Audio",
     isActive: true,
     dimensions: { width: 18, height: 20 },
-    imageURL: "https://id-preview--cd435d9a-6844-44e6-8351-279acb86b107.lovable.app/assets/headphones-CHt0pv2S.jpg"
+    imageURL:
+      "https://id-preview--cd435d9a-6844-44e6-8351-279acb86b107.lovable.app/assets/headphones-CHt0pv2S.jpg",
   },
   {
     name: "Office Chair",
@@ -70,7 +74,8 @@ export const arrayProducts: Product[] = [
     currency: "COP",
     category: "Furniture",
     isActive: true,
-    imageURL: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    imageURL:
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Gaming Mouse",
@@ -80,7 +85,7 @@ export const arrayProducts: Product[] = [
     currency: "USD",
     category: "Accessories",
     isActive: true,
-    dimensions: { width: 6, height: 12 }
+    dimensions: { width: 6, height: 12 },
   },
   {
     name: "4K Monitor",
@@ -90,7 +95,8 @@ export const arrayProducts: Product[] = [
     currency: "USD",
     category: "Electronics",
     isActive: true,
-    imageURL: "https://images.unsplash.com/photo-1547658718-1cdaa0852790?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    imageURL:
+      "https://images.unsplash.com/photo-1547658718-1cdaa0852790?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Running Shoes",
@@ -99,7 +105,7 @@ export const arrayProducts: Product[] = [
     quantity: 50,
     currency: "COP",
     category: "Clothing",
-    isActive: true
+    isActive: true,
   },
   {
     name: "Backpack",
@@ -108,7 +114,7 @@ export const arrayProducts: Product[] = [
     quantity: 20,
     currency: "USD",
     category: "Accessories",
-    isActive: true
+    isActive: true,
   },
   {
     name: "Smartwatch",
@@ -118,7 +124,8 @@ export const arrayProducts: Product[] = [
     currency: "USD",
     category: "Electronics",
     isActive: false,
-    imageURL: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    imageURL:
+      "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Bluetooth Speaker",
@@ -127,7 +134,7 @@ export const arrayProducts: Product[] = [
     quantity: 35,
     currency: "USD",
     category: "Audio",
-    isActive: true
+    isActive: true,
   },
   {
     name: "Desk Lamp",
@@ -136,7 +143,7 @@ export const arrayProducts: Product[] = [
     quantity: 22,
     currency: "COP",
     category: "Furniture",
-    isActive: true
+    isActive: true,
   },
   {
     name: "Gaming Keyboard",
@@ -145,7 +152,7 @@ export const arrayProducts: Product[] = [
     quantity: 28,
     currency: "USD",
     category: "Accessories",
-    isActive: true
+    isActive: true,
   },
   {
     name: "Mountain Bike",
@@ -155,7 +162,7 @@ export const arrayProducts: Product[] = [
     currency: "COP",
     category: "Sports",
     isActive: true,
-    dimensions: { width: 150, height: 100 }
+    dimensions: { width: 150, height: 100 },
   },
   {
     name: "Coffee Maker",
@@ -164,7 +171,7 @@ export const arrayProducts: Product[] = [
     quantity: 16,
     currency: "COP",
     category: "Appliances",
-    isActive: true
+    isActive: true,
   },
   {
     name: "T-Shirt",
@@ -173,8 +180,8 @@ export const arrayProducts: Product[] = [
     quantity: 100,
     currency: "USD",
     category: "Clothing",
-    isActive: true
-  }
+    isActive: true,
+  },
 ];
 
 // Array of Users
@@ -188,8 +195,8 @@ export const arrayUsers: User[] = [
       city: "New York",
       state: "NY",
       zipCode: "10001",
-      country: "USA"
-    }
+      country: "USA",
+    },
   },
   {
     name: "Carlos Ramírez",
@@ -198,8 +205,8 @@ export const arrayUsers: User[] = [
     address: {
       street: "Av. Siempre Viva 742",
       city: "Bogotá",
-      country: "Colombia"
-    }
+      country: "Colombia",
+    },
   },
   {
     name: "Sophia Martinez",
@@ -210,8 +217,8 @@ export const arrayUsers: User[] = [
       city: "Toronto",
       state: "ON",
       zipCode: "M4B 1B4",
-      country: "Canada"
-    }
+      country: "Canada",
+    },
   },
   {
     name: "David Kim",
@@ -220,8 +227,8 @@ export const arrayUsers: User[] = [
     address: {
       street: "789 King St",
       city: "Seoul",
-      country: "South Korea"
-    }
+      country: "South Korea",
+    },
   },
   {
     name: "Emma Thompson",
@@ -231,18 +238,18 @@ export const arrayUsers: User[] = [
       street: "10 Downing St",
       city: "London",
       zipCode: "SW1A 2AA",
-      country: "UK"
-    }
-  }
+      country: "UK",
+    },
+  },
 ];
 
 // Array of users registered
 export const usersRegistered: UserRegistered[] = [
-  {username: "Camilo", password: "cami1234"},
-  {username: "Pedro", password: "pepe1234"},
-  {username: "Daniela12", password: "danipro"},
-  {username: "piton0520", password: "jackson123"}
-]
+  { username: "Camilo", password: "cami1234" },
+  { username: "Pedro", password: "pepe1234" },
+  { username: "Daniela12", password: "danipro" },
+  { username: "piton0520", password: "jackson123" },
+];
 
 // Class UserStore
 export class UserStore {
@@ -251,56 +258,68 @@ export class UserStore {
   // List Users
   getUsers(listUsers: UserRegistered[]) {
     const usersNames = listUsers.map((user, index) => {
-      return `\n User #${index + 1} -> ${user.username}` 
-    })
+      return `\n User #${index + 1} -> ${user.username}`;
+    });
 
-    return `${usersNames.join("")}`
-  } 
+    return `${usersNames.join("")}`;
+  }
 
   // Find User By name
   findByName(username: string, listUsers: UserRegistered[]) {
+<<<<<<< HEAD
     const userFound = listUsers.find((user) => user.username == username)
 
     if (userFound) {
       return `User ${username} found succesfully of the list ✅`
+=======
+    const userFounded = listUsers.find((user) => user.username == username);
+
+    if (userFounded) {
+      return `User ${username} found succesfully of the list ✅`;
+>>>>>>> 828556f (Added toastify library)
     } else {
-      return `User ${username} was not found of the list ✖️`
+      return `User ${username} was not found of the list ✖️`;
     }
   }
 
   // Create a new user
-  createUser(username: string, password:string, listUsers: UserRegistered[]) {
+  createUser(username: string, password: string, listUsers: UserRegistered[]) {
     const newUser: UserRegistered = {
       username: username,
-      password: password
+      password: password,
     };
 
     if (!username || !password) {
-      return `Error creating user, enter username and password`
+      return `Error creating user, enter username and password`;
     }
 
+<<<<<<< HEAD
     listUsers.push(newUser)
+=======
+    listUsers.push(newUser);
+    return `User ${username} has been created succesfully ✅`;
+>>>>>>> 828556f (Added toastify library)
   }
 
   // Remove an User
   updateUser(listUsers: UserRegistered[]) {
-    const username = window.prompt("Enter the username to update")
+    const username = window.prompt("Enter the username to update");
 
     if (!username) {
-      return `Error, you did not entered a valid username`
+      return `Error, you did not entered a valid username`;
     }
 
     const userFound = listUsers.findIndex((user) => user.username == username);
 
     if (!userFound) {
-      return `Error, the user entered does not exists on the list of users`
+      return `Error, the user entered does not exists on the list of users`;
     }
 
     const newUserName = window.prompt("Enter the new user name");
     const newPassword = window.prompt("Enter the new password");
 
     if (!newUserName || !newPassword) {
-      return `Error updating the User ${username}, Enter a valid username and password`
+      return `Error updating the User ${username}, Enter a valid username and password`;
     }
 
     const userUpdated = {
@@ -336,3 +355,65 @@ export class UserStore {
     }
   }
 }
+
+// Notifications Toastify
+type notification = "error" | "success" | "warning" | "info";
+const defaultTime: number = 5000; 
+export const handleNotification = (text: string, type: notification, closeTime?: number) => {
+  switch (type) {
+    case "success":
+      toast.success(text, {
+        position: "top-right",
+        autoClose: closeTime ?? defaultTime,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      break;
+
+    case "error":
+      toast.error(text, {
+        position: "top-right",
+        autoClose: closeTime ?? defaultTime,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+        break;
+
+    case "warning":
+      toast.warn(text, {
+        position: "top-right",
+        autoClose: closeTime ?? defaultTime,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+        break;
+
+    case "info":
+      toast.info(text, {
+        position: "top-right",
+        autoClose: closeTime ?? defaultTime,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+        break
+
+    default:
+      break;
+  }
+};

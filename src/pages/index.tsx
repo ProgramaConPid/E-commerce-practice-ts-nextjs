@@ -6,23 +6,10 @@ import Cars from "@/components/cars";
 import Footer from "@/components/footer";
 import ProductList from "@/components/ProductList";
 import Login from "@/components/login";
-import { ToastContainer, toast } from "react-toastify";
 
 export default function Home() {
   const defaultImage: string =
     "https://images.unsplash.com/photo-1656543802898-41c8c46683a7?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-
-  const notify = () =>
-    toast.warn("🦄 Wow so easy!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    }); 
 
   return (
     <div>
@@ -35,6 +22,14 @@ export default function Home() {
       </button>
       <ToastContainer />
       <div className="container flex flex-col gap-4 w-full">
+        <div className="my-6 flex gap-4 mx-auto">
+          <button onClick={errorNotification} className="bg-red-600 text-white p-3 rounded-[.4rem] cursor-pointer">Error Notification</button>
+          <button onClick={successNotification} className="bg-green-600 text-white p-3 rounded-[.4rem] cursor-pointer">Success Notification</button>
+          <button onClick={warningNotification} className="bg-orange-600 text-white p-3 rounded-[.4rem] cursor-pointer">Warning Notification</button>
+          <button onClick={infoNotification} className="bg-violet-600 text-white p-3 rounded-[.4rem] cursor-pointer">Info Notification</button>
+        </div>
+        <ToastContainer />
+
         <div className="container__content" id="containerContent">
           <div className="container__products">
             <h1 className="text-3xl font-bold text-center mb-4 text-gray-800">

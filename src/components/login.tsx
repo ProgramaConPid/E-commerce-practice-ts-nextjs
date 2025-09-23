@@ -24,9 +24,9 @@ export default function Login() {
       return
     }
 
-    const userFounded = usersRegistered.find((user) => user.username == username && user.password == password);
+    const userFound = usersRegistered.find((user) => user.username == username && user.password == password);
 
-    if (userFounded) {
+    if (userFound) {
       router.push("/dashboard");
     } else {
       alert("Usuario o contraseña incorrectos");
