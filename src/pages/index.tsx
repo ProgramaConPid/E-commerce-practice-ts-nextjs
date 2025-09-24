@@ -1,26 +1,33 @@
 // import { useState } from "react";
-import { arrayProducts, arrayUsers } from "@/helpers/utils";
+import { arrayProducts, arrayUsers, handleNotification } from "@/helpers/utils";
 import Image from "next/image";
-import NavBar from "@/components/navBar";
-import Cars from "@/components/cars";
-import Footer from "@/components/footer";
+import NavBar from "@/components/NavBar";
+import Cars from "@/components/Cars";
+import Footer from "@/components/Footer";
 import ProductList from "@/components/ProductList";
-import Login from "@/components/login";
+import Login from "@/components/Login";
+import { ToastContainer } from "react-toastify";
 
 export default function Home() {
   const defaultImage: string =
     "https://images.unsplash.com/photo-1656543802898-41c8c46683a7?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
+  const errorNotification = () => {
+    handleNotification("Error, no fue posible acceder al perfil", "error", 6000)
+  }
+  const successNotification = () => {
+    handleNotification("Perfil actualizado con exito!", "success", 4000)
+  }
+  const warningNotification = () => {
+    handleNotification("Cuidado!, Se estan agotando los productos", "warning", 6000)
+  }
+  const infoNotification = () => {
+    handleNotification("Tienes mensajes sin leer en tu bandeja de entrada", "info")
+  }
+
   return (
     <div>
       <NavBar />
-      <button
-        className="bg-amber-700 text-white p-3 block mx-auto cursor-pointer my-7"
-        onClick={notify}
-      >
-        Notify Me
-      </button>
-      <ToastContainer />
       <div className="container flex flex-col gap-4 w-full">
         <div className="my-6 flex gap-4 mx-auto">
           <button onClick={errorNotification} className="bg-red-600 text-white p-3 rounded-[.4rem] cursor-pointer">Error Notification</button>

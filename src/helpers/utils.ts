@@ -266,17 +266,10 @@ export class UserStore {
 
   // Find User By name
   findByName(username: string, listUsers: UserRegistered[]) {
-<<<<<<< HEAD
     const userFound = listUsers.find((user) => user.username == username)
 
     if (userFound) {
       return `User ${username} found succesfully of the list ✅`
-=======
-    const userFounded = listUsers.find((user) => user.username == username);
-
-    if (userFounded) {
-      return `User ${username} found succesfully of the list ✅`;
->>>>>>> 828556f (Added toastify library)
     } else {
       return `User ${username} was not found of the list ✖️`;
     }
@@ -293,12 +286,7 @@ export class UserStore {
       return `Error creating user, enter username and password`;
     }
 
-<<<<<<< HEAD
     listUsers.push(newUser)
-=======
-    listUsers.push(newUser);
-    return `User ${username} has been created succesfully ✅`;
->>>>>>> 828556f (Added toastify library)
   }
 
   // Remove an User

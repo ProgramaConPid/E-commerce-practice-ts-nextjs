@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import { UserStore } from "@/helpers/utils";
 import { usersRegistered } from "@/helpers/utils";
-import NavBar from "@/components/navBar";
-import Footer from "@/components/footer";
+import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
 
 export default function Dashboard() {
   const router = useRouter();
