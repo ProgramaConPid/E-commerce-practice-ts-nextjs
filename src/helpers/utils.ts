@@ -311,7 +311,7 @@ export class UserStore {
     }
 
     const userUpdated = {
-      oldUsername: listUsers[userFound].username,
+      oldUsername: listUsers[userFound].username || "Pepe",
       username: newUserName,
       password: newPassword
     }

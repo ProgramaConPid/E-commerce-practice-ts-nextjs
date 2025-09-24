@@ -30,3 +30,22 @@ body {
   margin: auto;
 }
 
+/* Component Card Styles */
+.card.grey {
+  background-color: #F3F3F3;
+}
+.card.green {
+  background-color: #B9FF66;
+}
+.card.dark {
+  background-color: #191A23;
+}
+
+.green {
+  background-color: #B9FF66;
+}
+
+.white {
+  background-color: white;
+  color: #000;
+}
