@@ -13,7 +13,7 @@ interface ButtonProps {
   onClick?: () => void;
 }
 
-export const Button = ({ text, variant, disabled = false, onClick, leftIcon }: ButtonProps) => {
+export const Button = ({ text, variant, disabled = false, onClick, leftIcon, rightIcon }: ButtonProps) => {
   return (
     <button
       onClick={onClick}
@@ -24,6 +24,7 @@ export const Button = ({ text, variant, disabled = false, onClick, leftIcon }: B
     >
       {leftIcon}
       <span>{disabled ? "Deshabilitado" : text}</span>
+      {rightIcon}
     </button>
   );
 };
