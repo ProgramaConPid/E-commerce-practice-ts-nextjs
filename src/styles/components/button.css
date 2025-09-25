@@ -1,0 +1,52 @@
+/* Button Styles */
+.btn {
+  transition: 500ms ease all;
+  border: 1px solid transparent;
+}
+
+.btn:hover {
+  background: white;
+}
+
+.primary {
+  background-color: #035AA6;
+}
+
+.primary:hover {
+  color: #035AA6;
+  border: 1px solid #035AA6;
+}
+
+.secondary {
+  background-color: #00c5cd;
+}
+
+.secondary:hover {
+  color: #00c5cd;
+  border: 1px solid #00c5cd;
+}
+
+.outline {
+  background-color: #f925f9;
+}
+
+.outline:hover {
+  color: #f925f9;
+  border: 1px solid #f925f9;
+}
+
+.danger {
+  background-color: #DC3545;
+}
+
+.danger:hover {
+  color: #DC3545;
+  border: 1px solid #DC3545;
+}
+
+.disabled {
+  cursor: default;
+  background-color: rgba(224, 224, 224, 0.897);
+  pointer-events: none;
+  color: black;
+}

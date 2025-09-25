@@ -1,5 +1,6 @@
 import { Product, User, Car, UserRegistered } from "@/interfaces/main";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 // Array od Cars
 export const arrayCars: Car[] = [
@@ -405,3 +406,47 @@ export const handleNotification = (text: string, type: notification, closeTime?:
       break;
   }
 };
+
+// Custom Alerts
+export const showErrorAlert = () => {
+  Swal.fire({
+    title: 'Error!',
+    text: 'Do you want to continue',
+    icon: 'error',
+    confirmButtonText: 'Cool'
+  })
+}
+
+export const showSuccessAlert = () => {
+  Swal.fire({
+    title: 'Success!',
+    text: 'Product saved successfully',
+    icon: 'success',
+    confirmButtonText: 'Okay'
+  })
+}
+
+export const showInfoAlert = () => {
+  Swal.fire({
+    title: "The Internet?",
+    text: "That thing is still around?",
+    icon: "question"
+  });
+}
+
+export const showConfirmAlert = () => {
+  Swal.fire({
+    title: "Do you want to save the changes?",
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: "Save",
+    denyButtonText: `Don't save`
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      Swal.fire("Saved!", "", "success");
+    } else if (result.isDenied) {
+      Swal.fire("Changes are not saved", "", "info");
+    }
+  });
+}

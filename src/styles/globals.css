@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "./components/button.css";
+@import "./components/badge.css";
 
 :root {
   --background: #ffffff;

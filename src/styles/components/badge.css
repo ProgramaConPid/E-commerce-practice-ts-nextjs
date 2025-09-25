@@ -1,0 +1,20 @@
+/* Badge Styles */
+.success {
+  background-color: #198754;
+}
+
+.warning {
+  background-color: #ffc107;
+}
+
+.error {
+  background-color: #dc3545;
+}
+
+.info {
+  background-color: #0dcaf0;
+}
+
+.neutral {
+  background-color: #adb5bd;
+}

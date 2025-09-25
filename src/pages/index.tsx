@@ -2,7 +2,15 @@
 // import { useState } from "react";
 
 // Import utility functions and data arrays from helpers
-import { arrayProducts, arrayUsers, handleNotification } from "@/helpers/utils";
+import {
+  arrayProducts,
+  arrayUsers,
+  handleNotification,
+  showConfirmAlert,
+  showErrorAlert,
+  showInfoAlert,
+  showSuccessAlert,
+} from "@/helpers/utils";
 
 // Import Next.js Image component for optimized image rendering
 import Image from "next/image";
@@ -16,6 +24,10 @@ import Login from "@/components/Login";
 
 // Import toast notification container for displaying notifications
 import { ToastContainer } from "react-toastify";
+import { AiFillCheckCircle, AiOutlineClose } from "react-icons/ai";
+import { CiCircleInfo, CiWarning } from "react-icons/ci";
+import { FaRegCircleCheck } from "react-icons/fa6";
+import { PiWarningDiamondFill } from "react-icons/pi";
 
 // Import custom Card component for displaying service cards
 import { Card } from "@/components/Card";
@@ -30,23 +42,34 @@ export default function Home() {
 
   // Function to display error notification
   const errorNotification = () => {
-    handleNotification("Error, no fue posible acceder al perfil", "error", 6000)
-  }
+    handleNotification(
+      "Error, no fue posible acceder al perfil",
+      "error",
+      6000
+    );
+  };
 
   // Function to display success notification
   const successNotification = () => {
-    handleNotification("Perfil actualizado con exito!", "success", 4000)
-  }
+    handleNotification("Perfil actualizado con exito!", "success", 4000);
+  };
 
   // Function to display warning notification
   const warningNotification = () => {
-    handleNotification("Cuidado!, Se estan agotando los productos", "warning", 6000)
-  }
+    handleNotification(
+      "Cuidado!, Se estan agotando los productos",
+      "warning",
+      6000
+    );
+  };
 
   // Function to display info notification
   const infoNotification = () => {
-    handleNotification("Tienes mensajes sin leer en tu bandeja de entrada", "info")
-  }
+    handleNotification(
+      "Tienes mensajes sin leer en tu bandeja de entrada",
+      "info"
+    );
+  };
 
   return (
     // Main container div for the entire page
@@ -59,16 +82,36 @@ export default function Home() {
         {/* Notification testing buttons section */}
         <div className="my-6 flex gap-4 mx-auto">
           {/* Button to trigger error notification */}
-          <button onClick={errorNotification} className="bg-red-600 text-white p-3 rounded-[.4rem] cursor-pointer">Error Notification</button>
+          <button
+            onClick={errorNotification}
+            className="bg-red-600 text-white p-3 rounded-[.4rem] cursor-pointer"
+          >
+            Error Notification
+          </button>
 
           {/* Button to trigger success notification */}
-          <button onClick={successNotification} className="bg-green-600 text-white p-3 rounded-[.4rem] cursor-pointer">Success Notification</button>
+          <button
+            onClick={successNotification}
+            className="bg-green-600 text-white p-3 rounded-[.4rem] cursor-pointer"
+          >
+            Success Notification
+          </button>
 
           {/* Button to trigger warning notification */}
-          <button onClick={warningNotification} className="bg-orange-600 text-white p-3 rounded-[.4rem] cursor-pointer">Warning Notification</button>
+          <button
+            onClick={warningNotification}
+            className="bg-orange-600 text-white p-3 rounded-[.4rem] cursor-pointer"
+          >
+            Warning Notification
+          </button>
 
           {/* Button to trigger info notification */}
-          <button onClick={infoNotification} className="bg-violet-600 text-white p-3 rounded-[.4rem] cursor-pointer">Info Notification</button>
+          <button
+            onClick={infoNotification}
+            className="bg-violet-600 text-white p-3 rounded-[.4rem] cursor-pointer"
+          >
+            Info Notification
+          </button>
         </div>
 
         {/* Toast container for displaying notifications */}
@@ -184,7 +227,7 @@ export default function Home() {
                   // Individual user card container
                   <div
                     key={user.name}
-                    className="user__box lg:w-[300px] w-[250px] bg-white shadow-md rounded-lg p-6 border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition duration-300"
+                    className="user__box lg:w-[300px] w-[220px] bg-white shadow-md rounded-lg p-6 border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition duration-300"
                   >
                     {/* User name */}
                     <h3 className="user__box--name text-lg font-semibold text-indigo-600 mb-2">
@@ -216,25 +259,91 @@ export default function Home() {
           </div>
         </div>
 
+        {/* COMPONENT CARD #1 */}
         {/* Services cards section */}
         <div className="container__cards my-[3rem] mx-auto grid grid-cols-2 gap-4">
           {/* Search Engine Optimization card */}
-          <Card text={"Search Engine"} secondText={"Optimization"} textBg={"green"} cardBg={"grey"} imageURL={"/image-1.png"}   />
+          <Card
+            text={"Search Engine"}
+            secondText={"Optimization"}
+            textBg={"green"}
+            cardBg={"grey"}
+            imageURL={"/image-1.png"}
+            btnProps={{
+              btnText: "Info Product",
+              btnVariant: "secondary",
+              btnDisabled: true,
+            }}
+            badgeProps={{label: "Out of stock", status: "warning", icon: <CiWarning className="text-[22px]" />}}
+          />
 
           {/* Pay-per-click advertising card */}
-          <Card text={"Pay-per click "} secondText={"advertising"} textBg={"white"} cardBg={"green"} imageURL={"/image-2.png"} />
+          <Card
+            text={"Pay-per click "}
+            secondText={"advertising"}
+            textBg={"white"}
+            cardBg={"green"}
+            imageURL={"/image-2.png"}
+            btnProps={{ btnText: "Save Product", onClick: showConfirmAlert, leftIcon: <AiFillCheckCircle /> }}
+            badgeProps={{label: "Notify me", status: "info", icon: <CiCircleInfo className="text-[22px]" />}}
+          />
 
           {/* Social Media Marketing card */}
-          <Card text={"Social Media"} secondText={"Marketing"} textBg={"white"} cardBg={"dark"} imageURL={"/image-3.png"}  />
+          <Card
+            text={"Social Media"}
+            secondText={"Marketing"}
+            textBg={"white"}
+            cardBg={"dark"}
+            imageURL={"/image-3.png"}
+            btnProps={{ btnText: "View Product", onClick: showInfoAlert }}
+            badgeProps={{label: "Notify me", status: "neutral"}}
+          />
 
           {/* Email Marketing card */}
-          <Card text={"Email"} secondText={"Marketing"} textBg={"green"} cardBg={"grey"} imageURL={"/image-6.png"}  />
+          <Card
+            text={"Email"}
+            secondText={"Marketing"}
+            textBg={"green"}
+            cardBg={"grey"}
+            imageURL={"/image-6.png"}
+            btnProps={{
+              btnText: "Save Product",
+              btnVariant: "danger",
+              btnDisabled: true,
+            }}
+            badgeProps={{label: "Notify me", status: "success", icon: <FaRegCircleCheck className="text-[22px]" />}}
+          />
 
           {/* Content Creation card */}
-          <Card text={"Content"} secondText={"Creation"} textBg={"white"} cardBg={"green"} imageURL={"/image-5.png"} />
+          <Card
+            text={"Content"}
+            secondText={"Creation"}
+            textBg={"white"}
+            cardBg={"green"}
+            imageURL={"/image-5.png"}
+            btnProps={{
+              btnText: "Delete Product",
+              btnVariant: "danger",
+              onClick: showErrorAlert,
+              leftIcon: <AiOutlineClose />
+            }}
+            badgeProps={{label: "View Info", status: "info", icon: <CiCircleInfo className="text-[22px]" />}}
+          />
 
           {/* Analytics and Tracking card */}
-          <Card text={"Analytics And"} secondText={"Tracking"} textBg={"green"} cardBg={"dark"} imageURL={"/image-4.png"}  />
+          <Card
+            text={"Analytics And"}
+            secondText={"Tracking"}
+            textBg={"green"}
+            cardBg={"dark"}
+            imageURL={"/image-4.png"}
+            btnProps={{
+              btnText: "Save Product",
+              btnVariant: "secondary",
+              onClick: showSuccessAlert,
+            }}
+            badgeProps={{label: "No references", status: "error", icon: <PiWarningDiamondFill />}}
+          />
         </div>
 
         {/* Additional components */}
@@ -246,5 +355,5 @@ export default function Home() {
       {/* Footer component */}
       <Footer />
     </div>
-  )
+  );
 }
