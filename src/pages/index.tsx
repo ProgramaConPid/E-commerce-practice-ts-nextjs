@@ -21,6 +21,7 @@ import Cars from "@/components/Cars";
 import Footer from "@/components/Footer";
 import ProductList from "@/components/ProductList";
 import Login from "@/components/Login";
+import { CardProps } from "@/components/Card";
 
 // Import toast notification container for displaying notifications
 import { ToastContainer } from "react-toastify";
@@ -70,6 +71,117 @@ export default function Home() {
       "info"
     );
   };
+
+  // Array Cards
+  const arrayCards: CardProps[] = [
+    {
+      text: "Search Engine",
+      secondText: "Optimization",
+      textBg: "green",
+      cardBg: "grey",
+      imageURL: "/image-1.png",
+      btnProps: {
+        btnText: "Info Product",
+        btnVariant: "secondary",
+        btnDisabled: true,
+      },
+      badgeProps: {
+        label: "Out of stock",
+        status: "warning",
+        icon: <CiWarning className="text-[22px]" />,
+        title: "Hurry, there are only a few references left!",
+      },
+    },
+    {
+      text: "Pay-per click ",
+      secondText: "advertising",
+      textBg: "white",
+      cardBg: "green",
+      imageURL: "/image-2.png",
+      btnProps: {
+        btnText: "Save Product",
+        onClick: showConfirmAlert,
+        leftIcon: <AiFillCheckCircle />,
+      },
+      badgeProps: {
+        label: "Notify me",
+        status: "info",
+        icon: <CiCircleInfo className="text-[22px]" />,
+        title: "Product posted the date:",
+      },
+    },
+    {
+      text: "Social Media",
+      secondText: "Marketing",
+      textBg: "white",
+      cardBg: "dark",
+      imageURL: "/image-3.png",
+      btnProps: {
+        btnText: "View Product",
+        onClick: showInfoAlert,
+      },
+      badgeProps: {
+        label: "Notify me",
+        status: "neutral",
+        title: "Not Available",
+      },
+    },
+    {
+      text: "Email",
+      secondText: "Marketing",
+      textBg: "green",
+      cardBg: "grey",
+      imageURL: "/image-6.png",
+      btnProps: {
+        btnText: "Save Product",
+        btnVariant: "danger",
+        btnDisabled: true,
+      },
+      badgeProps: {
+        label: "Notify me",
+        status: "success",
+        icon: <FaRegCircleCheck className="text-[22px]" />,
+        title: "Product added successfully",
+      },
+    },
+    {
+      text: "Content",
+      secondText: "Creation",
+      textBg: "white",
+      cardBg: "green",
+      imageURL: "/image-5.png",
+      btnProps: {
+        btnText: "Delete Product",
+        btnVariant: "danger",
+        onClick: showErrorAlert,
+        leftIcon: <AiOutlineClose />,
+      },
+      badgeProps: {
+        label: "View Info",
+        status: "info",
+        icon: <CiCircleInfo className="text-[22px]" />,
+        title: "Product posted the date:",
+      },
+    },
+    {
+      text: "Analytics And",
+      secondText: "Tracking",
+      textBg: "green",
+      cardBg: "dark",
+      imageURL: "/image-4.png",
+      btnProps: {
+        btnText: "Save Product",
+        btnVariant: "secondary",
+        onClick: showSuccessAlert,
+      },
+      badgeProps: {
+        label: "No references",
+        status: "error",
+        icon: <PiWarningDiamondFill />,
+        title: "Error adding the product!",
+      },
+    },
+  ];
 
   return (
     // Main container div for the entire page
@@ -259,124 +371,35 @@ export default function Home() {
           </div>
         </div>
 
-        {/* COMPONENT CARD #1 */}
+        {/* COMPONENT CARDS */}
         {/* Services cards section */}
         <div className="container__cards my-[3rem] mx-auto grid grid-cols-2 gap-4">
-          {/* Search Engine Optimization card */}
-          <Card
-            text={"Search Engine"}
-            secondText={"Optimization"}
-            textBg={"green"}
-            cardBg={"grey"}
-            imageURL={"/image-1.png"}
-            btnProps={{
-              btnText: "Info Product",
-              btnVariant: "secondary",
-              btnDisabled: true,
-            }}
-            badgeProps={{
-              label: "Out of stock",
-              status: "warning",
-              icon: <CiWarning className="text-[22px]" />,
-              title: "Hurry, there are only a few references left!",
-            }}
-          />
-
-          {/* Pay-per-click advertising card */}
-          <Card
-            text={"Pay-per click "}
-            secondText={"advertising"}
-            textBg={"white"}
-            cardBg={"green"}
-            imageURL={"/image-2.png"}
-            btnProps={{
-              btnText: "Save Product",
-              onClick: showConfirmAlert,
-              leftIcon: <AiFillCheckCircle />,
-            }}
-            badgeProps={{
-              label: "Notify me",
-              status: "info",
-              icon: <CiCircleInfo className="text-[22px]" />,
-              title: "Product posted the date:",
-            }}
-          />
-
-          {/* Social Media Marketing card */}
-          <Card
-            text={"Social Media"}
-            secondText={"Marketing"}
-            textBg={"white"}
-            cardBg={"dark"}
-            imageURL={"/image-3.png"}
-            btnProps={{ btnText: "View Product", onClick: showInfoAlert }}
-            badgeProps={{
-              label: "Notify me",
-              status: "neutral",
-              title: "Not Available",
-            }}
-          />
-
-          {/* Email Marketing card */}
-          <Card
-            text={"Email"}
-            secondText={"Marketing"}
-            textBg={"green"}
-            cardBg={"grey"}
-            imageURL={"/image-6.png"}
-            btnProps={{
-              btnText: "Save Product",
-              btnVariant: "danger",
-              btnDisabled: true,
-            }}
-            badgeProps={{
-              label: "Notify me",
-              status: "success",
-              icon: <FaRegCircleCheck className="text-[22px]" />,
-              title: "Product added successfully",
-            }}
-          />
-
-          {/* Content Creation card */}
-          <Card
-            text={"Content"}
-            secondText={"Creation"}
-            textBg={"white"}
-            cardBg={"green"}
-            imageURL={"/image-5.png"}
-            btnProps={{
-              btnText: "Delete Product",
-              btnVariant: "danger",
-              onClick: showErrorAlert,
-              leftIcon: <AiOutlineClose />,
-            }}
-            badgeProps={{
-              label: "View Info",
-              status: "info",
-              icon: <CiCircleInfo className="text-[22px]" />,
-              title: "Product posted the date:",
-            }}
-          />
-
-          {/* Analytics and Tracking card */}
-          <Card
-            text={"Analytics And"}
-            secondText={"Tracking"}
-            textBg={"green"}
-            cardBg={"dark"}
-            imageURL={"/image-4.png"}
-            btnProps={{
-              btnText: "Save Product",
-              btnVariant: "secondary",
-              onClick: showSuccessAlert,
-            }}
-            badgeProps={{
-              label: "No references",
-              status: "error",
-              icon: <PiWarningDiamondFill />,
-              title: "Error adding the product!",
-            }}
-          />
+          {arrayCards.map((card, index) => {
+            return (
+              <div key={index}>
+                <Card
+                  text={card.text}
+                  secondText={card.secondText}
+                  textBg={card.textBg}
+                  cardBg={card.cardBg}
+                  imageURL={card.imageURL}
+                  btnProps={{
+                    btnText: card.btnProps.btnText,
+                    btnVariant: card.btnProps.btnVariant,
+                    btnDisabled: card.btnProps.btnDisabled,
+                    leftIcon: card.btnProps.leftIcon,
+                    onClick: card.btnProps.onClick
+                  }}
+                  badgeProps={{
+                    label: card.badgeProps.label,
+                    status: card.badgeProps.status,
+                    icon: card.badgeProps.icon,
+                    title: card.badgeProps.title
+                  }}
+                />
+              </div>
+            )
+          })}
         </div>
 
         {/* Additional components */}
@@ -388,5 +411,5 @@ export default function Home() {
       {/* Footer component */}
       <Footer />
     </div>
-  );
+  )
 }

@@ -34,7 +34,7 @@ export default function Dashboard() {
   }
 
   const removeUser = () => {
-    users.removeUser(usersRegistered)
+    return users.removeUser(usersRegistered)
   }
 
   return (
@@ -46,7 +46,7 @@ export default function Dashboard() {
           <button className="bg-green-600 text-white p-2 rounded-[.3rem] cursor-pointer" onClick={() => alert(`HTTP METHOD GET: ${findUserByName()}`)}>Find by name</button>
           <button className="bg-orange-600 text-white p-2 rounded-[.3rem] cursor-pointer" onClick={() => alert(`HTTP METHOD POST: ${createNewUser()}`)}>Create user</button>
           <button className="bg-violet-600 text-white p-2 rounded-[.3rem] cursor-pointer" onClick={() => alert(`HTTP METHOD PUT: ${updateUser()}` )}>Update user</button>
-          <button className="bg-yellow-600 text-white p-2 rounded-[.3rem] cursor-pointer" onClick={() => alert(`HTTO METHOD DELETE: ${removeUser()}`)}>Remove User</button>
+          <button className="bg-yellow-600 text-white p-2 rounded-[.3rem] cursor-pointer" onClick={() => alert(`HTTP METHOD DELETE: ${removeUser()}`)}>Remove User</button>
         </div>
         <button
           className="bg-blue-500 p-4 text-white rounded-[.3rem]"

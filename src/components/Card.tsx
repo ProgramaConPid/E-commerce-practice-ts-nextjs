@@ -5,7 +5,7 @@ import { Button, Variant } from "./Button";
 import { Badge, Status } from "./Badge";
 
 type AvailableColors = "white" | "green" | "dark" | "grey";
-interface CardProps {
+export interface CardProps {
   text: string;
   secondText?: string;
   textBg: AvailableColors;
@@ -40,7 +40,7 @@ export const Card = ({
 
   return (
     <div
-      className={`card ${cardBg} w-[400px] p-6 rounded-[1.5rem] grid grid-cols-2 gap-3 justify-between border-[1px] border-b-4`}
+      className={`card ${cardBg} w-[400px] h-full p-6 rounded-[1.5rem] grid grid-cols-2 gap-3 justify-between border-[1px] border-b-4`}
     >
       <div className="flex flex-col justify-between">
         <h3
@@ -64,7 +64,7 @@ export const Card = ({
           width={100}
           height={100}
           alt="Image"
-          className="h-[100%] w-[100%] my-auto rounded-[.4rem]"
+          className="h-[150px] w-[100%] my-auto rounded-[.4rem]"
           objectFit="cover"
         />
       </div>

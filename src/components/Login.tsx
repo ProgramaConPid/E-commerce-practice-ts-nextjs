@@ -31,6 +31,8 @@ export default function Login() {
       router.push("/dashboard");
     } else {
       alert("Usuario o contraseña incorrectos");
+      setUsername("");
+      setPassword("");
     }
   };
 
@@ -39,12 +41,14 @@ export default function Login() {
       <h2>Iniciar Sesion</h2>
       <div className="container__form flex flex-col gap-2 my-3">
         <input
+          id="username"
           onChange={handleUser}
           className="border-2 border-amber-500 p-2 rounded-[.3rem]"
           type="text"
           placeholder="Usuario"
         />
         <input
+          id="password"
           onChange={handlePassword}
           className="border-2 border-amber-500 p-2 rounded-[.3rem]"
           type="password"
