@@ -8,22 +8,34 @@ export default function NavBar() {
       </div>
       <ul className="nav__links flex gap-6">
         <li className="nav__item relative">
-          <a href="#" className="decoration-0 cursor-pointer hover:text-[#7c3bed] duration-300">
+          <a
+            href="#"
+            className="decoration-0 cursor-pointer hover:text-[#7c3bed] duration-300"
+          >
             Home
           </a>
         </li>
         <li className="nav__item relative">
-          <a href="#" className="decoration-0 cursor-pointer hover:text-[#7c3bed] duration-300">
+          <a
+            href="#"
+            className="decoration-0 cursor-pointer hover:text-[#7c3bed] duration-300"
+          >
             About Us
           </a>
         </li>
         <li className="nav__item relative">
-          <a href="#" className="decoration-0 cursor-pointer hover:text-[#7c3bed] duration-300">
+          <a
+            href="#"
+            className="decoration-0 cursor-pointer hover:text-[#7c3bed] duration-300"
+          >
             Services
           </a>
         </li>
         <li className="nav__item relative">
-          <a href="#" className="decoration-0 cursor-pointer hover:text-[#7c3bed] duration-300">
+          <a
+            href="#"
+            className="decoration-0 cursor-pointer hover:text-[#7c3bed] duration-300"
+          >
             Contact
           </a>
         </li>
