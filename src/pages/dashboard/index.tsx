@@ -1,8 +1,6 @@
 import { useRouter } from "next/router";
 import { UserStore } from "@/helpers/utils";
 import { usersRegistered } from "@/helpers/utils";
-import NavBar from "@/components/NavBar";
-import Footer from "@/components/Footer";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -35,6 +33,10 @@ export default function Dashboard() {
     users.updateUser(usersRegistered)
   }
 
+  const removeUser = () => {
+    users.removeUser(usersRegistered)
+  }
+
   return (
     <div className="container h-[100vh] flex flex-col justify-center items-center">
       <div className="content flex flex-col border-2 rounded-[.3rem] w-[350px] p-5">
@@ -44,7 +46,7 @@ export default function Dashboard() {
           <button className="bg-green-600 text-white p-2 rounded-[.3rem] cursor-pointer" onClick={() => alert(`HTTP METHOD GET: ${findUserByName()}`)}>Find by name</button>
           <button className="bg-orange-600 text-white p-2 rounded-[.3rem] cursor-pointer" onClick={() => alert(`HTTP METHOD POST: ${createNewUser()}`)}>Create user</button>
           <button className="bg-violet-600 text-white p-2 rounded-[.3rem] cursor-pointer" onClick={() => alert(`HTTP METHOD PUT: ${updateUser()}` )}>Update user</button>
-          <button className="bg-yellow-600 text-white p-2 rounded-[.3rem] cursor-pointer">Remove User</button>
+          <button className="bg-yellow-600 text-white p-2 rounded-[.3rem] cursor-pointer" onClick={() => alert(`HTTO METHOD DELETE: ${removeUser()}`)}>Remove User</button>
         </div>
         <button
           className="bg-blue-500 p-4 text-white rounded-[.3rem]"

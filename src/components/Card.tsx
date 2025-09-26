@@ -75,7 +75,7 @@ export const Card = ({
         onClick={btnProps.onClick}
         leftIcon={btnProps.leftIcon}
       />
-      <Badge label={badgeProps.label} status={badgeProps.status} icon={badgeProps.icon} />
+      <Badge label={badgeProps.label} status={badgeProps.status} icon={badgeProps.icon} title={badgeProps.title} />
     </div>
   );
 };

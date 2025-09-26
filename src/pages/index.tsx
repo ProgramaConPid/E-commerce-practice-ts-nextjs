@@ -274,7 +274,7 @@ export default function Home() {
               btnVariant: "secondary",
               btnDisabled: true,
             }}
-            badgeProps={{label: "Out of stock", status: "warning", icon: <CiWarning className="text-[22px]" />}}
+            badgeProps={{label: "Out of stock", status: "warning", icon: <CiWarning className="text-[22px]" />, title: "Hurry, there are only a few references left!"}}
           />
 
           {/* Pay-per-click advertising card */}
@@ -285,7 +285,7 @@ export default function Home() {
             cardBg={"green"}
             imageURL={"/image-2.png"}
             btnProps={{ btnText: "Save Product", onClick: showConfirmAlert, leftIcon: <AiFillCheckCircle /> }}
-            badgeProps={{label: "Notify me", status: "info", icon: <CiCircleInfo className="text-[22px]" />}}
+            badgeProps={{label: "Notify me", status: "info", icon: <CiCircleInfo className="text-[22px]" />, title: "Product posted the date:"}}
           />
 
           {/* Social Media Marketing card */}
@@ -296,7 +296,7 @@ export default function Home() {
             cardBg={"dark"}
             imageURL={"/image-3.png"}
             btnProps={{ btnText: "View Product", onClick: showInfoAlert }}
-            badgeProps={{label: "Notify me", status: "neutral"}}
+            badgeProps={{label: "Notify me", status: "neutral", title: "Not Available"}}
           />
 
           {/* Email Marketing card */}
@@ -311,7 +311,7 @@ export default function Home() {
               btnVariant: "danger",
               btnDisabled: true,
             }}
-            badgeProps={{label: "Notify me", status: "success", icon: <FaRegCircleCheck className="text-[22px]" />}}
+            badgeProps={{label: "Notify me", status: "success", icon: <FaRegCircleCheck className="text-[22px]" />, title: "Product added successfully"}}
           />
 
           {/* Content Creation card */}
@@ -327,7 +327,7 @@ export default function Home() {
               onClick: showErrorAlert,
               leftIcon: <AiOutlineClose />
             }}
-            badgeProps={{label: "View Info", status: "info", icon: <CiCircleInfo className="text-[22px]" />}}
+            badgeProps={{label: "View Info", status: "info", icon: <CiCircleInfo className="text-[22px]" />, title: "Product posted the date:"}}
           />
 
           {/* Analytics and Tracking card */}
@@ -342,7 +342,7 @@ export default function Home() {
               btnVariant: "secondary",
               onClick: showSuccessAlert,
             }}
-            badgeProps={{label: "No references", status: "error", icon: <PiWarningDiamondFill />}}
+            badgeProps={{label: "No references", status: "error", icon: <PiWarningDiamondFill />, title: "Error adding the product!"}}
           />
         </div>
 
