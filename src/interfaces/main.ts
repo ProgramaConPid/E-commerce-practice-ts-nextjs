@@ -1,3 +1,8 @@
+import { Variant } from "@/components/Button";
+import { Status } from "@/components/Badge";
+import { AvailableColors } from "@/components/Card";
+import { JSX } from "react";
+
 type Currency = "USD" | "COP";
 type Dimensions = {
   width: number,
@@ -48,6 +53,37 @@ export interface Car {
 export interface UserRegistered {
   username: string,
   password: string
+}
+
+// Interface for CardProps
+export interface CardProps {
+  text: string;
+  secondText?: string;
+  textBg: AvailableColors;
+  cardBg: AvailableColors;
+  imageURL: string;
+  btnProps: ButtonProps
+  badgeProps: BadgeProps
+}
+
+// Interface for ButtonProps
+export interface ButtonProps {
+  text: string;
+  variant?: Variant;
+  size?: "sm" | "md" | "lg";
+  disabled?: boolean;
+  loading?: boolean;
+  leftIcon?: JSX.Element;
+  rightIcon?: JSX.Element;
+  onClick?: () => void;
+}
+
+// Interface for BadgeProps
+export interface BadgeProps {
+  label: string;
+  status?: Status;
+  icon?: JSX.Element;
+  title?: string;
 }
 
 

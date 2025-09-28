@@ -7,6 +7,12 @@ export default function Dashboard() {
 
   const users = new UserStore()
 
+  const redirect = () => {
+    localStorage.removeItem("User")
+    localStorage.setItem("Auth", "false")
+    router.back()
+  }
+
   const findUserByName = () => {
     const username = window.prompt("Enter the username to search on the list");
 
@@ -50,9 +56,7 @@ export default function Dashboard() {
         </div>
         <button
           className="bg-blue-500 p-4 text-white rounded-[.3rem]"
-          onClick={() => {
-            router.back();
-          }}
+          onClick={redirect}
         >
           Regresar
         </button>

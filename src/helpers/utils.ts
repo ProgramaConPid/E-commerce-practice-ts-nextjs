@@ -1,4 +1,10 @@
-import { Product, User, Car, UserRegistered } from "@/interfaces/main";
+import {
+  Product,
+  User,
+  Car,
+  UserRegistered,
+  CardProps,
+} from "@/interfaces/main";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
@@ -267,10 +273,10 @@ export class UserStore {
 
   // Find User By name
   findByName(username: string, listUsers: UserRegistered[]) {
-    const userFound = listUsers.find((user) => user.username == username)
+    const userFound = listUsers.find((user) => user.username == username);
 
     if (userFound) {
-      return `User ${username} found succesfully of the list ✅`
+      return `User ${username} found succesfully of the list ✅`;
     } else {
       return `User ${username} was not found of the list ✖️`;
     }
@@ -287,7 +293,7 @@ export class UserStore {
       return `Error creating user, enter username and password`;
     }
 
-    listUsers.push(newUser)
+    listUsers.push(newUser);
   }
 
   // Remove an User
@@ -314,8 +320,8 @@ export class UserStore {
     const userUpdated = {
       oldUsername: listUsers[userFound].username || "Pepe",
       username: newUserName,
-      password: newPassword
-    }
+      password: newPassword,
+    };
 
     listUsers[userFound].username = newUserName;
     listUsers[userFound].password = newPassword;
@@ -324,17 +330,19 @@ export class UserStore {
 
   // Delete an user
   removeUser(listUsers: UserRegistered[]) {
-    const username = window.prompt("Enter the username to delete")
+    const username = window.prompt("Enter the username to delete");
     if (!username) {
-      return "Error, enter a valid username."
+      return "Error, enter a valid username.";
     }
 
-    const userFound = listUsers.findIndex(user => user.username == username);
+    const userFound = listUsers.findIndex((user) => user.username == username);
     if (userFound === -1) {
-      return `The user entered ${username} does not exist on the list of users.`
+      return `The user entered ${username} does not exist on the list of users.`;
     }
 
-    const confirmDeleteUser = window.confirm(`The user ${username} was found succesfully, are you sure want to delete?`)
+    const confirmDeleteUser = window.confirm(
+      `The user ${username} was found succesfully, are you sure want to delete?`
+    );
 
     if (confirmDeleteUser) {
       const removedUser = listUsers.splice(userFound, 1)[0];
@@ -347,8 +355,12 @@ export class UserStore {
 
 // Notifications Toastify
 type notification = "error" | "success" | "warning" | "info";
-const defaultTime: number = 5000; 
-export const handleNotification = (text: string, type: notification, closeTime?: number) => {
+const defaultTime: number = 5000;
+export const handleNotification = (
+  text: string,
+  type: notification,
+  closeTime?: number
+) => {
   switch (type) {
     case "success":
       toast.success(text, {
@@ -373,8 +385,8 @@ export const handleNotification = (text: string, type: notification, closeTime?:
         draggable: true,
         progress: undefined,
         theme: "light",
-        });
-        break;
+      });
+      break;
 
     case "warning":
       toast.warn(text, {
@@ -386,8 +398,8 @@ export const handleNotification = (text: string, type: notification, closeTime?:
         draggable: true,
         progress: undefined,
         theme: "light",
-        });
-        break;
+      });
+      break;
 
     case "info":
       toast.info(text, {
@@ -399,8 +411,8 @@ export const handleNotification = (text: string, type: notification, closeTime?:
         draggable: true,
         progress: undefined,
         theme: "colored",
-        });
-        break
+      });
+      break;
 
     default:
       break;
@@ -410,29 +422,29 @@ export const handleNotification = (text: string, type: notification, closeTime?:
 // Custom Alerts
 export const showErrorAlert = () => {
   Swal.fire({
-    title: 'Error!',
-    text: 'Do you want to continue',
-    icon: 'error',
-    confirmButtonText: 'Cool'
-  })
-}
+    title: "Error!",
+    text: "Do you want to continue",
+    icon: "error",
+    confirmButtonText: "Cool",
+  });
+};
 
 export const showSuccessAlert = () => {
   Swal.fire({
-    title: 'Success!',
-    text: 'Product saved successfully',
-    icon: 'success',
-    confirmButtonText: 'Okay'
-  })
-}
+    title: "Success!",
+    text: "Product saved successfully",
+    icon: "success",
+    confirmButtonText: "Okay",
+  });
+};
 
 export const showInfoAlert = () => {
   Swal.fire({
     title: "The Internet?",
     text: "That thing is still around?",
-    icon: "question"
+    icon: "question",
   });
-}
+};
 
 export const showConfirmAlert = () => {
   Swal.fire({
@@ -440,7 +452,7 @@ export const showConfirmAlert = () => {
     showDenyButton: true,
     showCancelButton: true,
     confirmButtonText: "Save",
-    denyButtonText: `Don't save`
+    denyButtonText: `Don't save`,
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
@@ -449,4 +461,4 @@ export const showConfirmAlert = () => {
       Swal.fire("Changes are not saved", "", "info");
     }
   });
-}
+};

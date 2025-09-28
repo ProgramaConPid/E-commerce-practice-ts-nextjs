@@ -1,6 +1,13 @@
 import React from "react";
+import { useRouter } from "next/router";
 
 export default function NavBar() {
+  const router = useRouter()
+
+  const redirect = () => {
+    router.push("/login");
+  }
+
   return (
     <nav className="nav flex justify-between items-center p-5 border-b-2 border-zinc-200 mb-4">
       <div className="nav__logo">
@@ -37,6 +44,14 @@ export default function NavBar() {
             className="decoration-0 cursor-pointer hover:text-[#7c3bed] duration-300"
           >
             Contact
+          </a>
+        </li>
+        <li onClick={redirect} className="nav__item relative">
+          <a
+            href="#"
+            className="decoration-0 cursor-pointer hover:text-[#7c3bed] duration-300"
+          >
+            Log In
           </a>
         </li>
       </ul>

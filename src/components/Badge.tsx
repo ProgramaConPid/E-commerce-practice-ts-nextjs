@@ -1,12 +1,8 @@
-import React, { JSX } from "react";
+import React from "react";
+import { BadgeProps } from "@/interfaces/main";
 
 export type Status = "success" | "warning" | "info" | "error" | "neutral";
-interface BadgeProps {
-  label: string;
-  status?: Status;
-  icon?: JSX.Element;
-  title?: string;
-}
+
 
 export const Badge = ({ label, status, icon, title }: BadgeProps) => {
   const date = new Date();

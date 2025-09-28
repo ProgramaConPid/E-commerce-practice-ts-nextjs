@@ -1,32 +1,125 @@
-import React, { JSX } from "react";
 import Image from "next/image";
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
-import { Button, Variant } from "./Button";
-import { Badge, Status } from "./Badge";
+import { CardProps } from "@/interfaces/main";
+import { Button } from "./Button";
+import { Badge } from "./Badge";
+import { AiFillCheckCircle, AiOutlineClose } from "react-icons/ai";
+import { CiCircleInfo, CiWarning } from "react-icons/ci";
+import { FaRegCircleCheck } from "react-icons/fa6";
+import { PiWarningDiamondFill } from "react-icons/pi";
+import { showConfirmAlert, showErrorAlert, showInfoAlert, showSuccessAlert } from "@/helpers/utils";
 
-type AvailableColors = "white" | "green" | "dark" | "grey";
-export interface CardProps {
-  text: string;
-  secondText?: string;
-  textBg: AvailableColors;
-  cardBg: AvailableColors;
-  imageURL: string;
-  btnProps: {
-    btnText: string;
-    btnVariant?: Variant;
-    btnDisabled?: boolean;
-    leftIcon?: JSX.Element;
-    rightIcon?: JSX.Element;
-    onClick?: () => void;
-  };
-  badgeProps: {
-    label: string;
-    status?: Status;
-    icon?: JSX.Element;
-    title?: string;
-  };
-}
+export const arrayCards: CardProps[] = [
+  {
+    text: "Search Engine",
+    secondText: "Optimization",
+    textBg: "green",
+    cardBg: "grey",
+    imageURL: "/image-1.png",
+    btnProps: {
+      text: "Info Product",
+      variant: "secondary",
+      disabled: true,
+    },
+    badgeProps: {
+      label: "Out of stock",
+      status: "warning",
+      icon: <CiWarning className="text-[22px]" />,
+      title: "Hurry, there are only a few references left!",
+    },
+  },
+  {
+    text: "Pay-per click ",
+    secondText: "advertising",
+    textBg: "white",
+    cardBg: "green",
+    imageURL: "/image-2.png",
+    btnProps: {
+      text: "Save Product",
+      onClick: showConfirmAlert,
+      leftIcon: <AiFillCheckCircle />,
+    },
+    badgeProps: {
+      label: "Notify me",
+      status: "info",
+      icon: <CiCircleInfo className="text-[22px]" />,
+      title: "Product posted the date:",
+    },
+  },
+  {
+    text: "Social Media",
+    secondText: "Marketing",
+    textBg: "white",
+    cardBg: "dark",
+    imageURL: "/image-3.png",
+    btnProps: {
+      text: "View Product",
+      onClick: showInfoAlert,
+    },
+    badgeProps: {
+      label: "Notify me",
+      status: "neutral",
+      title: "Not Available",
+    },
+  },
+  {
+    text: "Email",
+    secondText: "Marketing",
+    textBg: "green",
+    cardBg: "grey",
+    imageURL: "/image-6.png",
+    btnProps: {
+      text: "Save Product",
+      variant: "danger",
+      disabled: true,
+    },
+    badgeProps: {
+      label: "Notify me",
+      status: "success",
+      icon: <FaRegCircleCheck className="text-[22px]" />,
+      title: "Product added successfully",
+    },
+  },
+  {
+    text: "Content",
+    secondText: "Creation",
+    textBg: "white",
+    cardBg: "green",
+    imageURL: "/image-5.png",
+    btnProps: {
+      text: "Delete Product",
+      variant: "danger",
+      onClick: showErrorAlert,
+      leftIcon: <AiOutlineClose />,
+    },
+    badgeProps: {
+      label: "View Info",
+      status: "info",
+      icon: <CiCircleInfo className="text-[22px]" />,
+      title: "Product posted the date:",
+    },
+  },
+  {
+    text: "Analytics And",
+    secondText: "Tracking",
+    textBg: "green",
+    cardBg: "dark",
+    imageURL: "/image-4.png",
+    btnProps: {
+      text: "Save Product",
+      variant: "secondary",
+      onClick: showSuccessAlert,
+    },
+    badgeProps: {
+      label: "No references",
+      status: "error",
+      icon: <PiWarningDiamondFill />,
+      title: "Error adding the product!",
+    },
+  },
+];
 
+export type AvailableColors = "white" | "green" | "dark" | "grey";
 export const Card = ({
   text,
   secondText,
@@ -69,9 +162,9 @@ export const Card = ({
         />
       </div>
       <Button
-        text={btnProps.btnText}
-        variant={btnProps.btnVariant}
-        disabled={btnProps.btnDisabled}
+        text={btnProps.text}
+        variant={btnProps.variant}
+        disabled={btnProps.disabled}
         onClick={btnProps.onClick}
         leftIcon={btnProps.leftIcon}
       />

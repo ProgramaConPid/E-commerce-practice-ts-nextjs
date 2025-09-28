@@ -1,16 +1,8 @@
-import React, { JSX } from "react";
+import React from "react";
+import { ButtonProps } from "@/interfaces/main";
 
 export type Variant = "primary" | "secondary" | "outline" | "danger";
-interface ButtonProps {
-  text: string;
-  variant?: Variant;
-  size?: "sm" | "md" | "lg";
-  disabled?: boolean;
-  loading?: boolean;
-  leftIcon?: JSX.Element;
-  rightIcon?: JSX.Element;
-  onClick?: () => void;
-}
+
 
 export const Button = ({
   text,
