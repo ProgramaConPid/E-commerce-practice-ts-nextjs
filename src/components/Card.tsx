@@ -1,3 +1,4 @@
+// US-W3 -CardComponent
 import Image from "next/image";
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
 import { CardProps } from "@/interfaces/main";

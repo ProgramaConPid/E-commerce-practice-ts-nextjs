@@ -1,3 +1,4 @@
+// US-W3 -BadgeComponent
 import React from "react";
 import { BadgeProps } from "@/interfaces/main";
 
