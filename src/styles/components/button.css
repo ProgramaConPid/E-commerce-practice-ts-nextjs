@@ -50,3 +50,15 @@
   pointer-events: none;
   color: black;
 }
+
+.sm {
+  height: 20px;
+}
+
+.md {
+  height: 35px;
+}
+
+.lg {
+  height: 50px;
+}

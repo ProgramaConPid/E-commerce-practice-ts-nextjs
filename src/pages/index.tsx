@@ -152,7 +152,8 @@ export default function Home() {
                     variant: card.btnProps.variant,
                     disabled: card.btnProps.disabled,
                     leftIcon: card.btnProps.leftIcon,
-                    onClick: card.btnProps.onClick
+                    onClick: card.btnProps.onClick,
+                    size: card.btnProps.size
                   }}
                   badgeProps={{
                     label: card.badgeProps.label,

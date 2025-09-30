@@ -21,6 +21,7 @@ export const arrayCards: CardProps[] = [
       text: "Info Product",
       variant: "secondary",
       disabled: true,
+      size: "sm"
     },
     badgeProps: {
       label: "Out of stock",
@@ -73,6 +74,7 @@ export const arrayCards: CardProps[] = [
       text: "Save Product",
       variant: "danger",
       disabled: true,
+      size: "lg"
     },
     badgeProps: {
       label: "Notify me",
@@ -92,6 +94,7 @@ export const arrayCards: CardProps[] = [
       variant: "danger",
       onClick: showErrorAlert,
       leftIcon: <AiOutlineClose />,
+      size: "lg"
     },
     badgeProps: {
       label: "View Info",
@@ -110,6 +113,7 @@ export const arrayCards: CardProps[] = [
       text: "Save Product",
       variant: "secondary",
       onClick: showSuccessAlert,
+      size: "md"
     },
     badgeProps: {
       label: "No references",
@@ -168,6 +172,7 @@ export const Card = ({
         disabled={btnProps.disabled}
         onClick={btnProps.onClick}
         leftIcon={btnProps.leftIcon}
+        size={btnProps.size}
       />
       <Badge
         label={badgeProps.label}
