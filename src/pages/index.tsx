@@ -5,6 +5,7 @@
 import {
   handleNotification
 } from "@/helpers/utils";
+import { getComments } from "@/services/comments";
 
 // Import custom components for the page layout
 import NavBar from "@/components/NavBar";
@@ -57,6 +58,11 @@ export default function Home() {
       "info"
     );
   };
+
+  const handleClick = async() => {
+    const data = await getComments()
+    console.log(data);
+  }
 
   return (
     // Main container div for the entire page
@@ -170,6 +176,7 @@ export default function Home() {
         {/* Additional components */}
         <Cars />
         <ProductList />
+        <button onClick={handleClick}>Get Comments</button>
       </div>
 
       {/* Footer component */}
