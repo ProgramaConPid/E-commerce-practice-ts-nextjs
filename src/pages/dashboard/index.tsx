@@ -1,9 +1,11 @@
 import { useRouter } from "next/router";
 import { UserStore } from "@/helpers/utils";
 import { usersRegistered } from "@/helpers/utils";
+import { useState } from "react";
 
 export default function Dashboard() {
   const router = useRouter();
+  const [comments, setComments] = useState([])
 
   const users = new UserStore();
 
@@ -12,6 +14,12 @@ export default function Dashboard() {
     localStorage.setItem("Auth", "false");
     router.back();
   };
+
+  const getComments = async() => {
+    const data = await users.getComments()
+    setComments(data)
+    console.log(comments);
+  }
 
   const findUserByName = () => {
     const username = window.prompt("Enter the username to search on the list");
@@ -52,9 +60,7 @@ export default function Dashboard() {
         <div className="flex flex-col gap-4">
           <button
             className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition-all"
-            onClick={() =>
-              alert(`HTTP METHOD GET: ${users.getUsers(usersRegistered)}`)
-            }
+            onClick={getComments}
           >
             Get Users
           </button>

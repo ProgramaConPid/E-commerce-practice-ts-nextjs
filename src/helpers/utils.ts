@@ -3,10 +3,10 @@ import {
   User,
   Car,
   UserRegistered,
-  CardProps,
 } from "@/interfaces/main";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { getComments } from "@/services/comments";
 
 // Array od Cars
 export const arrayCars: Car[] = [
@@ -264,12 +264,9 @@ export class UserStore {
   // -- Methods CRUD --
 
   // List Users
-  getUsers(listUsers: UserRegistered[]) {
-    const usersNames = listUsers.map((user, index) => {
-      return `\n User #${index + 1} -> ${user.username}`;
-    });
-
-    return `${usersNames.join("")}`;
+  async getComments() {
+    const data = await getComments() 
+    return data;
   }
 
   // Find User By name

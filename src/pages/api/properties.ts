@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import connectDB from "@/lib/dbconnection";
-import { Property } from "@/database/models/properties.model";
+import Property from "@/database/models/properties.model";
 
 export default async function handler(
   req: NextApiRequest,

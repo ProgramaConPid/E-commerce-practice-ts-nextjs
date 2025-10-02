@@ -1,6 +1,6 @@
-import moongose from 'mongoose';
+import {Schema, model, models} from 'mongoose';
 
-const Properties = new moongose.Schema({
+const Properties = new Schema({
   name: { type: String },
   value: { type: Number },
   img: {  type: String }
@@ -8,5 +8,6 @@ const Properties = new moongose.Schema({
   collection: "properties"
 })
 
-export const Property = moongose.model("Properties", Properties)
+const Property = models.Properties || model("Properties", Properties)
 
+export default Property;
