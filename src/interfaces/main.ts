@@ -9,7 +9,7 @@ type Dimensions = {
   height: number,
 }
 
-// Interface for Product
+// Interface for Product - HU M1-S1
 export interface Product {
   name: string,
   brand: string,
@@ -22,7 +22,7 @@ export interface Product {
   imageURL?: string
 }
 
-// Interface for Address
+// Interface for Address - HU M1-S1
 interface Address {
   street: string,
   city: string,
@@ -31,7 +31,7 @@ interface Address {
   country: string,
 }
 
-// Interface for User
+// Interface for User - HU M1-S1
 export interface User {
   name: string,
   email: string,

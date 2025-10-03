@@ -71,15 +71,17 @@ export default async function handler(
   // PUT METHOD
   if (req.method === "PUT") {
     try {
-      const { id, name, text } = req.body;
+      const { id } = req.query
+      const { name, value, img } = req.body;
       const updateProperty = await Property.findByIdAndUpdate(id, {
         name,
-        text,
+        value,
+        img
       });
       return res.status(HTTP_CODES.OK).json({
         ok: true,
         message: "Property updated successfully",
-        updatedId: id,
+        updatedId: `${id}`,
         response: updateProperty,
       });
     } catch (e) {

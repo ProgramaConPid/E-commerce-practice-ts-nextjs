@@ -1,13 +1,20 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import { getProperties } from "@/services/properties";
+import { use, useState } from "react";
+import {
+  getProperties,
+  createProperty,
+  deleteProperty,
+  updateProperty,
+} from "@/services/properties";
 import { MdOutlineEdit } from "react-icons/md";
 import { FaTrashAlt } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import FormCreate from "@/components/FormCreate";
+import FormUpdate from "@/components/FormUpdate";
 import Property from "@/database/models/properties.model";
-import Link from "next/link";
+import { handleNotification } from "@/helpers/utils";
+import { ToastContainer } from "react-toastify";
 
 type Property = {
   _id: string;
@@ -24,6 +31,7 @@ export default function Dashboard() {
   const [inputName, setInputName] = useState("");
   const [inputValue, setInputValue] = useState<number | "">("");
   const [inputImage, setInputImage] = useState("");
+  const [selectedId, setSelectedId] = useState("");
 
   const saveFormData = async () => {
     const newProperty = {
@@ -32,13 +40,70 @@ export default function Dashboard() {
       img: inputImage,
     };
 
-    console.log("Saving...", newProperty);
+    createProperty(
+      newProperty.name,
+      Number(newProperty.value),
+      newProperty.img
+    );
+    setTimeout(() => {
+      handleNotification(
+        `Property with name: ${newProperty.name} has been created successfully`,
+        "success",
+        4000
+      );
+      console.log("Saving...", newProperty);
+    }, 500);
 
     setInputName("");
     setInputValue("");
     setInputImage("");
 
     return newProperty;
+  };
+
+  const getIdProperty = (id: string) => {
+    setFormModal(true);
+    setSelectedId(id);
+  };
+
+  const saveFormDataUpdate = async () => {
+    if (!selectedId) return;
+
+    const updateData = {
+      name: inputName,
+      value: inputValue,
+      img: inputImage,
+    };
+
+    if (!updateData.name || !updateData.value || !updateData.img) {
+      handleNotification(
+        `Error, it was not possible to modify the property with ID: ${selectedId}, Please enter valid values.`,"error",
+        4000
+      );
+      return;
+    }
+
+    await updateProperty(
+      selectedId,
+      updateData.name,
+      Number(updateData.value),
+      updateData.img
+    );
+
+    setTimeout(async() => {
+      handleNotification(
+        `Property with ID: ${selectedId} has been updated successfully`,
+        "success",
+        4000
+      );
+
+      await getPropertiesDB()
+
+      setInputName("")
+      setInputValue("")
+      setInputImage("")
+      setFormModal(false)
+    }, 500);
   };
 
   const redirect = () => {
@@ -48,8 +113,8 @@ export default function Dashboard() {
   };
 
   const redirectDashboard = () => {
-    router.push("/dashboard/users")
-  }
+    router.push("/dashboard/users");
+  };
 
   const getPropertiesDB = async () => {
     const data = await getProperties();
@@ -61,6 +126,20 @@ export default function Dashboard() {
     }
 
     setModal("flex");
+  };
+
+  const deletePropertyAndRefresh = async (id: string) => {
+    deleteProperty(id);
+
+    setTimeout(async () => {
+      await getPropertiesDB();
+    }, 500);
+
+    handleNotification(
+      `Property with ID: ${id} has been removed successfully`,
+      "success",
+      4000
+    );
   };
 
   return (
@@ -161,10 +240,16 @@ export default function Dashboard() {
                       </div>
                       <div className="actions flex justify-center gap-4 mt-auto">
                         <button className="bg-sky-600 hover:bg-sky-500 transition-colors p-2 rounded-lg shadow-md">
-                          <MdOutlineEdit className="text-white text-[1.2rem]" />
+                          <MdOutlineEdit
+                            onClick={() => getIdProperty(p._id)}
+                            className="text-white text-[1.2rem] cursor-pointer"
+                          />
                         </button>
                         <button className="bg-red-600 hover:bg-red-500 transition-colors p-2 rounded-lg shadow-md">
-                          <FaTrashAlt className="text-white text-[1.2rem]" />
+                          <FaTrashAlt
+                            onClick={() => deletePropertyAndRefresh(p._id)}
+                            className="text-white text-[1.2rem] cursor-pointer"
+                          />
                         </button>
                       </div>
                     </li>
@@ -173,10 +258,23 @@ export default function Dashboard() {
               ) : (
                 <p className="text-center text-gray-400">No properties found</p>
               )}
+
+              <FormUpdate
+                isOpen={formModal}
+                onClose={() => setFormModal(false)}
+                saveFormData={saveFormDataUpdate}
+                inputName={inputName}
+                setInputName={setInputName}
+                inputValue={inputValue}
+                setInputValue={setInputValue}
+                inputImage={inputImage}
+                setInputImage={setInputImage}
+              />
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
+      <ToastContainer />
     </div>
   );
 }

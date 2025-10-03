@@ -24,6 +24,41 @@ export const createProperty = async(name:string, value:number, img:string) => {
       return response.data
     }
   } catch(e) {
-    alert(e)
+    console.error(e)
+  }
+}
+
+// PUT HTTP REQUEST
+export const updateProperty = async(id: string, name: string, value: number, img: string) => {
+  const newPropertyValues = {
+    name, 
+    value, 
+    img
+  }
+
+  console.log(id, newPropertyValues)
+  try {
+    const res = await axios.put(`${API_URL}?id=${id}`, newPropertyValues)
+    
+    if (!res.data.ok) {
+      throw new Error(`Error, cannot update the property with ID: ${id}`)
+    } 
+  } catch(e) {
+    console.error(e)
+  }
+}
+
+// DELETE HTTP REQUEST
+export const deleteProperty = async(id: string) => {
+  try {
+    const res = await axios.delete(`${API_URL}?id=${id}`)
+
+    if (!res.data.ok) {
+      throw new Error("Error, cannor delete the propertie")
+    } else {
+      return console.log(res.data)
+    }
+  } catch(e) {
+    console.error(e);
   }
 }

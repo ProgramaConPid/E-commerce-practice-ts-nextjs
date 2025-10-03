@@ -1,3 +1,4 @@
+// HU M1-S1 Manage products and users in an e-commerce platform
 import Image from "next/image";
 import React from "react";
 import { arrayProducts } from "@/helpers/utils";

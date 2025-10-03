@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
         hostname: 'images.unsplash.com',
       },
       {
+        protocol: 'http',
+        hostname: 'unsplash.com'
+      },
+      {
         protocol: 'https',
         hostname: 'cdn.ewebik.com',
       },

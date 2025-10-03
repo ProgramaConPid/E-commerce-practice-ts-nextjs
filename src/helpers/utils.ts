@@ -256,6 +256,7 @@ export const usersRegistered: UserRegistered[] = [
   { username: "Pedro", password: "pepe1234" },
   { username: "Daniela12", password: "danipro" },
   { username: "piton0520", password: "jackson123" },
+  { username: "manolopro", password: "manolito123" }
 ];
 
 // US-W2 Class UserStore - CRUD Methods
@@ -297,7 +298,7 @@ export class UserStore {
     listUsers.push(newUser)
   }
 
-  // Remove an User
+  // Update an User
   updateUser(listUsers: UserRegistered[]) {
     const username = window.prompt("Enter the username to update")
 
@@ -305,9 +306,9 @@ export class UserStore {
       return `Error, you did not entered a valid username`
     }
 
-    const userFound = listUsers.findIndex((user) => user.username == username);
+    const userFound = listUsers.findIndex((user) => user.username === username);
 
-    if (!userFound) {
+    if (userFound == -1) {
       return `Error, the user entered does not exists on the list of users`
     }
 
@@ -326,7 +327,7 @@ export class UserStore {
 
     listUsers[userFound].username = newUserName;
     listUsers[userFound].password = newPassword;
-    return userUpdated;
+    return `User ${userUpdated.oldUsername} has been updated to -> Username: ${userUpdated.username} - Password: ${userUpdated.password}`;
   }
 
   // Delete an user

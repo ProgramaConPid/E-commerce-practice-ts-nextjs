@@ -34,13 +34,7 @@ export default function Dashboard() {
   };
 
   const updateUser = () => {
-    const result = users.updateUser(usersRegistered);
-    const userUpdated = Object.values(result);
-    const oldUsername = userUpdated[0];
-    const username = userUpdated[1];
-    const password = userUpdated[2];
-
-    return `User changed ${oldUsername}, New info -> Username: ${username}, Password: ${password}`;
+    return users.updateUser(usersRegistered)
   };
 
   const removeUser = () => {
