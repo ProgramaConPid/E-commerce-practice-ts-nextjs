@@ -4,7 +4,7 @@ import connectDB from "@/lib/dbconnection";
 // Model comments from database sample_mflix
 import Comment from "@/database/models/comments.model";
 
-enum HTTP_CODES {
+export enum HTTP_CODES {
   OK = 200,
   CREATED_OK = 201,
   SERVER_ERROR = 500,

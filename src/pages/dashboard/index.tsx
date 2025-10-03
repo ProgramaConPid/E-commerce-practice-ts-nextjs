@@ -1,17 +1,44 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
-import { UserStore } from "@/helpers/utils";
-import { usersRegistered } from "@/helpers/utils";
 import { useState } from "react";
-import { createComment, getComments } from "@/services/comments";
+import { getProperties } from "@/services/properties";
+import { MdOutlineEdit } from "react-icons/md";
+import { FaTrashAlt } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import FormCreate from "@/components/FormCreate";
+import Property from "@/database/models/properties.model";
+
+type Property = {
+  _id: string;
+  name: string;
+  value: number;
+  img: string;
+};
 
 export default function Dashboard() {
   const router = useRouter();
-  const [comments, setComments] = useState<object[]>([]);
+  const [properties, setProperties] = useState<Property[]>([]);
+  const [modal, setModal] = useState("");
+  const [formModal, setFormModal] = useState(false);
   const [inputName, setInputName] = useState("");
-  const [inputText, setInputText] = useState("");
-  const [modal, setModal] = useState("")
+  const [inputValue, setInputValue] = useState<number | "">("");
+  const [inputImage, setInputImage] = useState("");
 
-  const users = new UserStore();
+  const saveFormData = async () => {
+    const newProperty = {
+      name: inputName,
+      value: inputValue,
+      img: inputImage,
+    };
+
+    console.log("Saving...", newProperty);
+
+    setInputName("");
+    setInputValue("");
+    setInputImage("");
+
+    return newProperty;
+  };
 
   const redirect = () => {
     localStorage.removeItem("User");
@@ -19,43 +46,16 @@ export default function Dashboard() {
     router.back();
   };
 
-  const getCommentsDB = async () => {
-    const data = await getComments();
-    setComments(data.response);
-    setModal("flex")
-  };
+  const getPropertiesDB = async () => {
+    const data = await getProperties();
 
-  const findUserByName = () => {
-    const username = window.prompt("Enter the username to search on the list");
-
-    if (!username) {
-      return `Error searching a user, enter a valid username`;
+    if (Array.isArray(data.response)) {
+      setProperties(data.response);
+    } else {
+      setProperties([]);
     }
 
-    return users.findByName(username, usersRegistered);
-  };
-
-  const updateUser = () => {
-    return users.updateUser(usersRegistered);
-  };
-
-  const removeUser = () => {
-    return users.removeUser(usersRegistered);
-  };
-
-  // -------------------------------
-  const saveFormData = async () => {
-    const newName = inputName;
-    const newText = inputText;
-
-    const res = await createComment(newName, newText);
-
-    setTimeout(() => {
-      setInputName("");
-      setInputText("");
-    }, 1000);
-
-    return res;
+    setModal("flex");
   };
 
   return (
@@ -67,27 +67,15 @@ export default function Dashboard() {
         <div className="flex flex-col gap-4">
           <button
             className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition-all"
-            onClick={getCommentsDB}
+            onClick={getPropertiesDB}
           >
-            Get Comments
+            Get Properties
           </button>
           <button
             className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg transition-all"
-            onClick={() => alert(`HTTP METHOD GET: ${findUserByName()}`)}
+            onClick={() => setFormModal(true)}
           >
-            Find by Name
-          </button>
-          <button
-            className="bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 rounded-lg transition-all"
-            onClick={() => alert(`HTTP METHOD PUT: ${updateUser()}`)}
-          >
-            Update User
-          </button>
-          <button
-            className="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg transition-all"
-            onClick={() => alert(`HTTP METHOD DELETE: ${removeUser()}`)}
-          >
-            Remove User
+            Create New Property
           </button>
         </div>
         <button
@@ -97,39 +85,91 @@ export default function Dashboard() {
           Back
         </button>
 
-        <div className="mt-8 border-[1px] p-5 rounded-[.5rem]">
-          <h2 className="text-center mb-5">Create A New Comment</h2>
-          <div className="form__group flex flex-col gap-3">
-            <input
-              onChange={(e) => setInputName(e.target.value)}
-              className="border-2 p-2 rounded-[.3rem] border-gray-400"
-              type="text"
-              placeholder="Name..."
-              value={inputName}
-            />
-            <input
-              onChange={(e) => setInputText(e.target.value)}
-              className="border-2 border-gray-400 p-2 rounded-[.3rem]"
-              type="text"
-              placeholder="Text..."
-              value={inputText}
-            />
+        <FormCreate
+          isOpen={formModal}
+          onClose={() => setFormModal(false)}
+          saveFormData={saveFormData}
+          inputName={inputName}
+          setInputName={setInputName}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          inputImage={inputImage}
+          setInputImage={setInputImage}
+        />
 
-            <button
-              onClick={async () => console.log(await saveFormData())}
-              className="bg-orange-500 text-white p-3 rounded-[.6rem] cursor-pointer"
+        <AnimatePresence>
+          {modal === "flex" && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="flex items-center justify-center fixed bg-black/80 top-0 left-0 h-full w-full z-50"
             >
-              Create Comment
-            </button>
-          </div>
-          <div className={`${modal ? `${modal} items-center justify-center fixed bg-gray-500/70 text-white top-0 left-0 w-full h-full text-[1rem]` : "hidden"}`}>
-            <div className="fixed top-3 right-3 cursor-pointer p-2 bg-black text-white" onClick={() => setModal("hidden")}>X</div>
-            <div className="p-3 bg-white border-2 text-black rounded-[.4rem]">
-              <p>Content Here</p>
-            </div>
-          </div>
-        </div>
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="p-6 bg-gray-900 text-white rounded-2xl shadow-2xl w-[95%] max-w-6xl h-[90vh] overflow-auto border border-gray-700"
+              >
+                {/* Header */}
+                <div className="flex justify-between items-center mb-6 border-b border-gray-700 pb-3">
+                  <h2 className="text-2xl font-bold text-sky-400">
+                    Properties
+                  </h2>
+                  <button
+                    className="w-10 h-10 flex items-center justify-center rounded-full bg-red-600 hover:bg-red-700 transition-colors"
+                    onClick={() => setModal("hidden")}
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                {/* Content */}
+                {properties.length > 0 ? (
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {properties.map((p, i) => (
+                      <li
+                        id={`${p._id}`}
+                        key={i}
+                        className="bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all p-4 flex flex-col gap-4"
+                      >
+                        <Image
+                          src={p.img}
+                          alt="Property Image"
+                          height={200}
+                          width={200}
+                          className="w-full h-[180px] object-cover rounded-lg"
+                        />
+                        <h3 className="text-lg font-semibold text-center text-white truncate">
+                          {p.name}
+                        </h3>
+                        <div className="price flex items-center justify-center gap-2">
+                          <p className="text-gray-400">Price:</p>
+                          <p className="text-sky-400 font-bold">${p.value}</p>
+                        </div>
+                        <div className="actions flex justify-center gap-4 mt-auto">
+                          <button className="bg-sky-600 hover:bg-sky-500 transition-colors p-2 rounded-lg shadow-md">
+                            <MdOutlineEdit className="text-white text-[1.2rem]" />
+                          </button>
+                          <button className="bg-red-600 hover:bg-red-500 transition-colors p-2 rounded-lg shadow-md">
+                            <FaTrashAlt className="text-white text-[1.2rem]" />
+                          </button>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-center text-gray-400">
+                    No properties found
+                  </p>
+                )}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
-  )
+  );
 }

@@ -21,8 +21,6 @@ import { Card } from "@/components/Card";
 import { Products } from "@/components/Products";
 import { Users } from "@/components/Users";
 
-// Import Hooks
-
 // Main Home component - the entry point for the e-commerce homepage
 export default function Home() {
   // Notification handler functions for different types of messages
