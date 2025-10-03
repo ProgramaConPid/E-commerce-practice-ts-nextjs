@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { use, useState } from "react";
+import { useState } from "react";
 import {
   getProperties,
   createProperty,
