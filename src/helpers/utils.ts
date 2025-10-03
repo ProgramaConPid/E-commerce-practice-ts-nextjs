@@ -264,78 +264,84 @@ export class UserStore {
   // -- Methods CRUD --
 
   // List Users
-  async getComments() {
-    const data = await getComments() 
-    return data;
-  }
+  getUsers(listUsers: UserRegistered[]) {
+    const usersNames = listUsers.map((user, index) => {
+      return `\n User #${index + 1} -> ${user.username}` 
+    })
+
+    return `${usersNames.join("")}`
+  } 
 
   // Find User By name
   findByName(username: string, listUsers: UserRegistered[]) {
-    const userFound = listUsers.find((user) => user.username == username);
+    const userFound = listUsers.find((user) => user.username == username)
 
     if (userFound) {
-      return `User ${username} found succesfully of the list ✅`;
+      return `User ${username} found succesfully of the list ✅`
     } else {
-      return `User ${username} was not found of the list ✖️`;
+      return `User ${username} was not found of the list ✖️`
     }
   }
 
   // Create a new user
-  createUser(username: string, password: string, listUsers: UserRegistered[]) {
+  createUser(username: string, password:string, listUsers: UserRegistered[]) {
     const newUser: UserRegistered = {
       username: username,
-      password: password,
+      password: password
     };
 
     if (!username || !password) {
-      return `Error creating user, enter username and password`;
+      return `Error creating user, enter username and password`
     }
 
-    listUsers.push(newUser);
+    listUsers.push(newUser)
   }
 
-  // Update an User
+  // Remove an User
   updateUser(listUsers: UserRegistered[]) {
-    const username = window.prompt("Enter the username to update");
+    const username = window.prompt("Enter the username to update")
+
+    if (!username) {
+      return `Error, you did not entered a valid username`
+    }
+
     const userFound = listUsers.findIndex((user) => user.username == username);
 
-    if (!username || userFound === -1) {
-      return `Error, the user ${username} does not exist on the list of users.`;
+    if (!userFound) {
+      return `Error, the user entered does not exists on the list of users`
     }
 
     const newUserName = window.prompt("Enter the new user name");
     const newPassword = window.prompt("Enter the new password");
 
     if (!newUserName || !newPassword) {
-      return `Error updating the User ${username}, Enter a valid username and password`;
+      return `Error updating the User ${username}, Enter a valid username and password`
     }
 
     const userUpdated = {
-      oldUsername: listUsers[userFound].username || "",
+      oldUsername: listUsers[userFound].username,
       username: newUserName,
-      password: newPassword,
-    };
+      password: newPassword
+    }
 
     listUsers[userFound].username = newUserName;
     listUsers[userFound].password = newPassword;
-    return `The user ${userUpdated.oldUsername} was updated succesfully to ${userUpdated.username} ✅`;
+    return userUpdated;
   }
 
   // Delete an user
   removeUser(listUsers: UserRegistered[]) {
-    const username = window.prompt("Enter the username to delete");
+    const username = window.prompt("Enter the username to delete")
     if (!username) {
-      return "Error, enter a valid username.";
+      return "Error, enter a valid username."
     }
 
-    const userFound = listUsers.findIndex((user) => user.username == username);
+    const userFound = listUsers.findIndex(user => user.username == username);
     if (userFound === -1) {
-      return `The user entered ${username} does not exist on the list of users.`;
+      return `The user entered ${username} does not exist on the list of users.`
     }
 
-    const confirmDeleteUser = window.confirm(
-      `The user ${username} was found succesfully, are you sure want to delete?`
-    );
+    const confirmDeleteUser = window.confirm(`The user ${username} was found succesfully, are you sure want to delete?`)
 
     if (confirmDeleteUser) {
       const removedUser = listUsers.splice(userFound, 1)[0];

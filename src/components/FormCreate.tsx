@@ -31,7 +31,7 @@ export default function CommentModal({ isOpen, onClose, saveFormData, inputName,
         </button>
 
         <h2 className="text-center text-xl font-semibold mb-5 text-gray-800">
-          Create A New Comment
+          Create A New Property
         </h2>
 
         <div className="flex flex-col gap-4">
