@@ -454,7 +454,6 @@ export const showConfirmAlert = () => {
     confirmButtonText: "Save",
     denyButtonText: `Don't save`,
   }).then((result) => {
-    /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
       Swal.fire("Saved!", "", "success");
     } else if (result.isDenied) {
@@ -462,3 +461,9 @@ export const showConfirmAlert = () => {
     }
   });
 };
+
+export const sum = (a: number, b: number) => a + b;
+
+export const isEven = (n: number) => n % 2 === 0;
+
+export const getIVA = (value: number) => value * 0.19;
