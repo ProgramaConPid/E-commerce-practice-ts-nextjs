@@ -12,6 +12,7 @@
     "test:ci": "jest --coverage"
   },
   "dependencies": {
+    "@heroui/react": "^2.8.5",
     "@next/font": "^14.2.15",
     "axios": "^1.12.2",
     "dotenv": "^17.2.3",

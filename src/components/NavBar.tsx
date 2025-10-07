@@ -54,7 +54,15 @@ export default function NavBar() {
             Log In
           </a>
         </li>
+        <li onClick={() => router.push("/form")} className="nav__item relative">
+          <a
+            href="#"
+            className="decoration-0 cursor-pointer hover:text-[#7c3bed] duration-300"
+          >
+            Form 
+          </a>
+        </li>
       </ul>
     </nav>
-  );
+  )
 }

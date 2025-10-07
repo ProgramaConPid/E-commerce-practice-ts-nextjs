@@ -1,15 +1,18 @@
 import { usersRegistered } from "@/helpers/utils";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { MyContext, UserLogged } from "../../context/Context";
+import { Switch } from "@heroui/react";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { isSelected, setIsSelected, setUserLogged } = useContext(MyContext);
   const router = useRouter();
 
   const redirect = () => {
-    router.push("/")
-  }
+    router.push("/");
+  };
 
   const handleUser = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
@@ -30,8 +33,15 @@ export default function Login() {
     );
 
     if (userFound) {
-      localStorage.setItem("User", username)
-      localStorage.setItem("Auth", "true")
+      const userLoggedSuccess: UserLogged = {
+        username: userFound.username,
+        password: userFound.password,
+        isActive: isSelected
+      };
+
+      localStorage.setItem("user", userLoggedSuccess.username)
+      setUserLogged(userLoggedSuccess);
+
       router.push("/dashboard");
     } else {
       alert("Usuario o contraseña incorrectos");
@@ -66,13 +76,21 @@ export default function Login() {
           />
         </div>
 
+        <Switch className="mx-auto mb-[1.5rem]" isSelected={isSelected} onValueChange={setIsSelected}>
+          <p className={`${isSelected ? "text-sky-500" : "text-black"} duration-300 ease-in`}>Airplane Mode</p>
+        </Switch>
+
+        <p className="text-black mb-2.5">Estado Del Input: {isSelected ? "true" : "false"}</p>
+
         <button
           onClick={verifyUser}
           className="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 mb-5 rounded-lg shadow-md transition"
         >
           Ingresar
         </button>
-        <a onClick={redirect} href="#" className="btnBack text-amber-500">Back Home</a>
+        <a onClick={redirect} href="#" className="btnBack text-amber-500">
+          Back Home
+        </a>
       </div>
     </div>
   );

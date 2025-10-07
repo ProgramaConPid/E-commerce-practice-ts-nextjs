@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   getProperties,
   createProperty,
@@ -15,6 +15,8 @@ import FormUpdate from "@/components/FormUpdate";
 import Property from "@/database/models/properties.model";
 import { handleNotification } from "@/helpers/utils";
 import { ToastContainer } from "react-toastify";
+import { MyContext } from '../../context/Context';
+import { Switch } from "@heroui/react";
 
 type Property = {
   _id: string;
@@ -32,6 +34,14 @@ export default function Dashboard() {
   const [inputValue, setInputValue] = useState<number | "">("");
   const [inputImage, setInputImage] = useState("");
   const [selectedId, setSelectedId] = useState("");
+  const { userLogged } = useContext(MyContext);
+  const { isSelected, setIsSelected } = useContext(MyContext);
+
+  // const user = localStorage.getItem("user");
+
+  // useEffect(() => {
+  //   handleNotification(`Welcome user ${userLogged.username}`, "success", 4000);
+  // });
 
   const saveFormData = async () => {
     const newProperty = {
@@ -77,7 +87,8 @@ export default function Dashboard() {
 
     if (!updateData.name || !updateData.value || !updateData.img) {
       handleNotification(
-        `Error, it was not possible to modify the property with ID: ${selectedId}, Please enter valid values.`,"error",
+        `Error, it was not possible to modify the property with ID: ${selectedId}, Please enter valid values.`,
+        "error",
         4000
       );
       return;
@@ -90,24 +101,24 @@ export default function Dashboard() {
       updateData.img
     );
 
-    setTimeout(async() => {
+    setTimeout(async () => {
       handleNotification(
         `Property with ID: ${selectedId} has been updated successfully`,
         "success",
         4000
       );
 
-      await getPropertiesDB()
+      await getPropertiesDB();
 
-      setInputName("")
-      setInputValue("")
-      setInputImage("")
-      setFormModal(false)
+      setInputName("");
+      setInputValue("");
+      setInputImage("");
+      setFormModal(false);
     }, 500);
   };
 
   const redirect = () => {
-    localStorage.removeItem("User");
+    localStorage.removeItem("User");  
     localStorage.setItem("Auth", "false");
     router.back();
   };
@@ -143,11 +154,13 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+      <h2 className="username text-black mb-5 text-2xl">Welcome user: {userLogged.username ? userLogged.username : "Unknown"}</h2>
+
       <div className="bg-white shadow-lg rounded-lg w-[400px] p-6">
         <h1 className="text-center text-3xl font-semibold text-gray-800 mb-6">
           Dashboard
-        </h1>
+        </h1> 
         <div className="flex flex-col gap-4">
           <button
             className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition-all cursor-pointer"
@@ -162,6 +175,20 @@ export default function Dashboard() {
             Create New Property
           </button>
         </div>
+
+        <div className="container__switch flex flex-col items-center justify-center mt-7">
+          <Switch
+            className="mx-auto mb-[1.5rem]"
+            isSelected={isSelected}
+            onValueChange={setIsSelected}
+          >
+            <p className={`${isSelected ? "text-sky-500" : "text-black"} duration-300 ease-in`}>Airplane Mode</p>
+          </Switch>
+          <p className="text-black mb-2.5">
+            Estado Del Input: {isSelected ? "true" : "false"}
+          </p>
+        </div>
+
         <button
           className="bg-violet-500 hover:bg-violet-600 text-white py-3 px-4 rounded-lg mt-6 w-full transition-all cursor-pointer"
           onClick={redirectDashboard}
