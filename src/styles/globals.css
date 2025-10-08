@@ -46,12 +46,18 @@ body {
 .card.dark {
   background-color: #191A23;
 }
-
 .green {
   background-color: #B9FF66;
 }
-
 .white {
   background-color: white;
   color: #000;
+}
+
+::marker {
+  color: white;
+}
+
+::placeholder {
+  color: #fff;
 }
